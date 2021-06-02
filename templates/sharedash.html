@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block main %}
+</center>
+<style>
+  .file{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:200px;
+    height:400px;
+    margin:5px;
+    float:left;
+    background:#4f5959; 
+    border-radius:10px;
+    color:white;
+  }
+
+  file img{
+    text-align:center;
+  }
+  .file:hover{
+    border-style:none none solid none;
+    border-color:#03c6fc;
+    color:white;
+  }
+</style>
+</head>
+<body>
+{% for i in new %}
+<a href={{'/shared/file/'+i["link"]}} target='_blank'><div class="file">
+  <img src={{'/static/attachments/icons/'+i["type"]}} alt="Avatar" style="width:25%">
+  <div class="container">
+    <h1>{{i["name"]}}</h1>
+    <p><u>Name: </u>{{i["name2"]}}<br><u>Category: </u>{{i["category"]}}<br>
+    <u>Owner:</u> {{i["user"]}}<br>
+    <u>Status:</u> {{i["share"]}} <br></p>
+  </div>
+</div></a>
+{% endfor %}
+</center>
+{% endblock %}

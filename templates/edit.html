@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block main %}
+<style>
+  .add{
+    background:#95b1de;
+    border-radius:15px;
+    width:520px;
+    height:700px;
+  
+  }
+  .add input[type=text], .add input[type=url]{
+    border-radius:25px;
+    border-style:solid;
+    border-color:#3d4757;
+    border-width:5px;
+    outline:none;
+  }
+  
+  .add input[type=text]:hover, .add input[type=url]:focus{
+    border-color:green;
+    outline:none;
+  }
+</style>
+<center>
+<div class='add'>
+<form method='POST' autocomplete="off"/>
+<h1>Edit Course Content</h1>
+<h1><input type='text' name='name' placeholder='File Name: ' class='new'><br>
+<input type='url' name='url' placeholder='File URL: ' class='new'></br>
+<h1>File Type:</h1>
+<h1><select name='type'>
+  <option value='file.svg'>Plain Text Based File</option>
+  <option value='code.svg'>Coding File</option>
+  <option value='pdf.svg'>PDF File</option>
+  <option value='gdrive.svg'>Google Drive Folder</option>
+  <option value='gdocs.svg'>Google Docs</option>
+  <option value='gslides.svg'>Google Slides</option>
+  <option value='gsheet.svg'>Google Sheets</option>
+  <option value='gdraw.svg'>Google Drawing</option>
+  <option value='gforms.svg'>Google Forms</option>
+  <option value='word.svg'>Microsoft Word</option>
+  <option value='excel.svg'>Microsoft Excel</option>
+  <option value='powerpoint.svg'>Microsoft Powerpoint</option>
+  <option value='onenote.svg'>Microsoft Onenote</option>
+  <option value='video.svg'>Video</option>
+  <option value='picture.svg'>Image</option>
+  <option value='quizlet.png'>Quizlet (NEW!)</option>
+</select><br></h1>
+<h1>Attachment Type:</h1>
+<h1><select name='category'>
+  <option value='notes'>Notes</option>
+  <option value='cw'>Classwork</option>
+  <option value='hw'>Homework</option>
+  <option value='sg'>Study Guide</option>
+  <option value='qz'>Quizlet</option>
+  <option value='ws'>Weekly Schedules</option>
+</select><br></h1>
+<h1>Select a class</h1>
+<h1><select name='course'>
+  {% for i in new %}
+  <option value={{i[1]}}>{{i[0]}}</option>
+  {% endfor %}
+</select><br></h1>
+<input type='submit' value='Upload File!' class='new'>
+</form>
+</div>
+{% if entered == True %}
+<h1>Data You Entered:</h1>
+<h2>Name: {{name}}</h2>
+<h2>URL: <a href={{url}}>{{url}}</a></h2>
+<h2>Category: {{category}}</h2>
+<h2>Type: <img src={{'static/attachments/icons/'+type}} width=100px>
+<h2>Course: Number {{course}}!</h2>
+{% endif %}
+</center>
+{% endblock %}

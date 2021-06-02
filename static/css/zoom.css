@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+
+body{
+  color:#FFFFFF;
+  background-color: #333436;/* i think the css is cached so its not updating*/
+  font-family: 'Lexend Deca', sans-serif;
+}
+input[type=password]{
+  background:white;
+  padding:5px;
+  width:30%;
+  height:8%;
+  border-radius:10px;
+  border-style:solid;
+  margin:5px;
+  border-color:#747487;
+  outline: none;
+}
+input[type=number]{
+  background:white;
+  padding:5px;
+  width:30%;
+  height:8%;
+  border-radius:10px;
+  border-style:solid;
+  border-color:#747487;
+  outline: none;
+}
+input:focus{
+  border-color:#0E71EB;
+  outline: none;
+
+}
+input[type=submit]{
+  background:#0F70EB;
+  border-radius:20px;
+  border-style:none;
+  padding:20px 150px;
+  font-size:1em;
+}
+input[type=submit]:hover{
+  background:#BABACC;
+  border-radius:20px;
+  border-style:none;
+  padding:20px 150px;
+}
+a{
+    color:#34bdeb;
+    text-decoration:none;
+  }
+  a:hover{
+    color:#348ceb;
+    text-decoration:none;
+  }
+select{
+  background:transparent;
+  color:white;
+  font-size:1em;
+}
+.new{
+  background:transparent;
+  color:white;
+  border-color:white;
+  border-width:2px;
+  border-radius:5px;
+  border-style:solid;
+  font-size:1em;
+}
+input .new{
+  border-color:white;
+  border-width:2px;
+  border-radius:5px;
+  border-style:solid;
+  font-size:1em;
+}
+.new::placeholder{
+  color:white;
+  font-size:1em;
+}

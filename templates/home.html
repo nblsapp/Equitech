@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% block main %}
+<script
+  type="text/javascript"
+  src="https://app.termly.io/embed.min.js"
+  data-auto-block="on"
+  data-website-uuid="eb1de628-c463-4c41-a09c-999f19419c9b"
+  ></script>
+
+<a href="https://app.termly.io/notify/f1f22363-f640-47d2-9b0d-ecb865075b85" style='color:#333436'>
+  Do not sell my info
+</a>
+<style>
+  .launch{
+    background:transparent;
+    border-style:solid;
+    border-width:2px;
+    border-color:white;
+    font-weight:400;
+    color:white;
+    font-size:2em;
+    border-radius:15px;
+    width:300px;
+    height:70px;
+    transition-delay:0s;
+  }
+  .launch:hover{
+    background:white;
+    font-weight:400;
+    color: #ED6F42;
+    transition-delay:0.1s;
+  }
+  .launchTOP{
+    background:transparent;
+    border-style:solid;
+    border-width:2px;
+    border-color:white;
+    font-weight:400;
+    color:white;
+    font-size:0.5em;
+    border-radius:15px;
+    width:75px;
+    height:30px;
+    transition-delay:0s;
+    float:right;
+  }
+  .launchTOP:hover{
+    background:white;
+    font-weight:400;
+    color: #ED6F42;
+    transition-delay:0.1s;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).scroll(function() {
+  var y = $(this).scrollTop();
+  if (y > 200) {
+    $('.second').fadeIn();
+  } else {
+    $('.second').fadeOut();
+  }
+
+  if (y > 400) {
+    $('.third').fadeIn();
+  } else {
+    $('.third').fadeOut();
+  }
+
+  if (y > 700) {
+    $('.fourth').fadeIn();
+  } else {
+    $('.fourth').fadeOut();
+  }
+});
+</script>
+<center>
+{% if token == False %}
+<a href='/launch'><button class='launchTOP'>Launch App</button></a>
+{% endif %}
+{% if token == True %}
+<a href='/login'><button class='launchTOP'>Log In</button></a>
+{% endif %}
+<h1>TestPreparer LMS</h1>
+<div style='width:50%;float:left;'>
+<span style='font-size:5em;'>Where Organization Happens.</span><br>
+<span style='font-size:1em;'>TestPreparer LMS does things like helping students organize notes all the way to organizing grades. It also keeps track of assignments and provides a safe youtube and zoom integration.</span><br>
+{% if token == False %}
+<a href='/launch'><button class='launch'>Launch App</button></a>
+{% endif %}
+{% if token == True %}
+<br>
+<a href='/login'><button class='launch'>Log In</button></a>
+{% endif %}
+</div> 
+<img width=40% src='static/assets/TestPreparer LMS.gif'>
+
+
+<div class='second'>
+<hr style='border: 10px solid yellow;border-radius: 5px;'>
+<img width=40% src='static/assets/TestPreparer.png'>
+<div style='width:50%;float:left;'>
+<span style='font-size:5em;clear:both;'>Features Easy to Use</span><br><span style='font-size:1em;'>TestPreparer LMS provides a course feature where students can organize their notes, add quiz dates and had other productivity tools..</span><br>
+{% if token == False %}
+
+{% endif %}
+{% if token == True %}
+<a href='/login'><button class='launch'>Log In</button></a>
+{% endif %}
+</div> 
+
+<hr style='border: 10px solid yellow;border-radius: 5px;'>
+<img width=40% src='static/assets/Zoom.png'>
+<span style='font-size:5em;'>Zoom Integration</span><br><span style='font-size:1em;'>TestPreparer LMS  has a feature where you can instantly join a Zoom meeting within the app. </span><br>
+{% if token == False %}
+
+{% endif %}
+{% if token == True %}
+<a href='/login'><button class='launch'>Log In</button></a>
+{% endif %}
+</div> 
+</div>
+
+<div class='third'>
+<hr style='border: 10px solid yellow;border-radius: 5px;'>
+<span style='font-size:5em;'>Youtube Integration</span><br><span style='font-size:1em;'>TestPreparer LMS  has a feature where you can instantly find a Youtube video within the app. </span><br>
+{% if token == False %}
+
+{% endif %}
+{% if token == True %}
+<a href='/login'><button class='launch'>Log In</button></a>
+{% endif %}
+</div> 
+<img width=40% src='static/assets/Youtube.png'>
+</div> 
+</div>
+
+<div class='fourth'>
+<hr style='border: 10px solid yellow;border-radius: 5px;'>
+<img src='static/assets/Banner.png'>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block main %}
+<style>
+  .add{
+    background:#95b1de;
+    border-radius:15px;
+    width:400px;
+    height:400px;
+  
+  }
+  .add input[type=text], .add input[type=url]{
+    border-radius:25px;
+    border-style:solid;
+    border-color:#3d4757;
+    border-width:5px;
+    outline:none;
+  }
+  
+  .add input[type=text]:hover, .add input[type=url]:focus{
+    border-color:green;
+    outline:none;
+  }
+</style>
+<center>
+<div class='add'>
+<form method='POST'>
+<h1>Add a Course</h1>
+<h1><input type='text' name='name' placeholder='Course Name:' class='new'><br>
+<input type='url' name='image' placeholder='Course Image' class='new'></br>
+<select name='title'>
+  <option value='Mr. '>Mr.</option>
+  <option value='Ms. '>Ms.</option>
+  <option value='Mrs. '>Mrs.</option>
+  <option value='Dr. '>Dr. </option>
+<input type='text' name='last' placeholder='Teacher' class='new'></h1>
+<input type='submit' value='Add Course!' class='new'>
+</form>
+</div>
+{% if entered == True %}
+<h1>Data You Entered:</h1>
+<h2>Name: {{name}}</h1>
+<h2>Image: <img src={{image}} width=100px>
+<h2>Teacher: {{teacher}}</h2>
+{% endif %}
+</center>
+{% endblock %}

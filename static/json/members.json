@@ -1,0 +1,114 @@
+[
+    {
+        "username": "admin",
+        "first": "Test",
+        "last": "Preparer",
+        "email": "testpreparergq@gmail.com",
+        "password": "123456789101112131415"
+    },
+    {
+        "username": "nicholasxwang",
+        "first": "Nicholas",
+        "last": "Wang",
+        "email": "nicholas.x.wang@gmail.com",
+        "password": "6c33f6424c660fda05f8c4112c95dd3d"
+    },
+    {
+        "username": "Coder N",
+        "first": "Coder ",
+        "last": "N",
+        "email": "neel.parpia@gmail.com",
+        "password": "05f11414d563052fd706d40472a373aa"
+    },
+    {
+        "username": "coderboy13",
+        "first": "Vedh",
+        "last": "Reddy",
+        "email": "vedhkreddy@gmail.com",
+        "password": "88740a52f7e363d7b95594889e9e8fb2"
+    },
+    {
+        "username": "hanzbaekbasis@gmail.com",
+        "first": "Hanz",
+        "last": "Baek",
+        "email": "hanzbaekbasis@gmail.com",
+        "password": "f0d593c3efb4610d1663072cc512808c"
+    },
+    {
+        "username": "Aryav",
+        "first": "aryav",
+        "last": "kaushik",
+        "email": "aryav.kaushik@gmail.com",
+        "password": "922c38b8046bc5b8f15af27ffc13edf3"
+    },
+    {
+        "username": "Kev",
+        "first": "Kevin",
+        "last": "",
+        "email": "kevinztma@gmail.com",
+        "password": "93da718b19bc119da1ca863e687c9533"
+    },
+    {
+        "username": "iw",
+        "first": "isabelle",
+        "last": "wang",
+        "email": "isabelle.xt.wang@gmail.com",
+        "password": "0c36185675314c199bf0d25afc7552b5"
+    },
+    {
+        "username": "KitenAnimates",
+        "first": "Rhyley",
+        "last": "Plant",
+        "email": "rhyleyplant@gmail.com",
+        "password": "b9721871178d27a1cf9fb70e2c7546a3"
+    },
+    {
+        "username": "Percy",
+        "first": "Percy ",
+        "last": "Jackson",
+        "email": "mc240231@students.lcisd.org",
+        "password": "067767958f9cd3ee0b67a2d0b14c6723"
+    },
+    {
+        "username": "AryavK",
+        "first": "Aryav",
+        "last": "Kaushik",
+        "email": "aryav.kaushik@gmail.com",
+        "password": "922c38b8046bc5b8f15af27ffc13edf3"
+    },
+    {
+        "username": "carrot",
+        "first": "Caroline",
+        "last": "Zhou",
+        "email": "zhou22334@gmail.com",
+        "password": "6d86711c68f1670d247c169689c92086"
+    },
+    {
+        "username": "Saanvi Juneja",
+        "first": "Saanvi ",
+        "last": "Juneja",
+        "email": "saanviiscool1@gmail.com",
+        "password": "d561ba1e97dd55dddcf263887cdea0f1"
+    },
+    {
+        "username": "Davidisnowdavid",
+        "first": "David",
+        "last": "Wu",
+        "email": "davidwu20090418@gmail.com",
+        "password": "f45de939e2e740f81ee3ab6a2bc8706f"
+    },
+    {
+        "username": "Deyex",
+        "first": "Deyex",
+        "last": "Deyex",
+        "email": "Deyex@gmail.com",
+        "password": "7ff246a3e3146431c9f6a09254019bbe"
+    },
+    {
+        "username": "helth",
+        "first": "helth",
+        "last": "helth2",
+        "email": "helth@gmail.com",
+        "password": "6e641c37efba419e10a1b28a96d30b05"
+    }
+]

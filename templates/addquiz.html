@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block main %}
+<form method='POST' autocomplete="off"/>
+<h1>Add a Course</h1>
+<h1><input type='text' name='name' placeholder='Assesment Name: ' class='new'><br>
+<input type='date' name='date' placeholder='Date:' class='new'></br>
+<h1>Quiz Type:</h1>
+<h1><select name='type'>
+  <option value='Quiz'>Quiz</option>
+  <option value='Test'>Test</option>
+</select><br></h1>
+
+<h1>Select a class</h1>
+<h1><select name='course'>
+  {% for i in new %}
+  <option value={{i[1]}}>{{i[0]}}</option>
+  {% endfor %}
+</select><br></h1>
+<input type='submit' value='Add Quiz/Test!' class='new'>
+</form>
+{% endblock %}

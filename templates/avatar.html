@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block main %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<form runat="server" method='POST'>
+  <input type='file' id="imgInp" multiple accept="image/*"/>
+  <input type='submit'>
+  <!--<img id="blah" src="#" alt="your image"  />
+  <span id='error' style='2color:red;'></span>!-->
+</form>
+<script>
+  var span = document.getElementById("error");
+  function hideImg() {
+        document.getElementById("blah").style.display = "none";
+        span.textContent = "Error! Your file did not work!";
+        
+       }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+
+$("#imgInp").change(function() {
+  read
+</script>
+{% endblock %}

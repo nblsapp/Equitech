@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+.fourofour{
+  height:100%;
+  background: #333436;
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body{
+  color:white;
+  background-color:#333436;
+  font-family: 'Lexend Deca', sans-serif;
+}
+input[type=text]{
+  border-radius:25px;
+  border-style:solid;
+  border-color:white;
+  border-width:5px;
+  padding:5px;
+  width:50%;
+  height:5%;
+  margin:5px;
+}
+input[type=url]{
+  border-radius:25px;
+  border-style:solid;
+  border-color:white;
+  padding:5px;
+  width:50%;
+  height:5%;
+  margin:5px;
+}
+input[type=email]{
+  border-radius:25px;
+  border-style:solid;
+  border-color:white;
+  padding:5px;
+  width:50%;
+  height:5%;
+  margin:5px;
+}
+input[type=password]{
+  border-radius:25px;
+  border-style:solid;
+  border-color:white;
+  padding:5px;
+  width:50%;
+  height:5%;
+  margin:5px;
+}
+input[type=number]{
+  border-radius:25px;
+  border-style:solid;
+  border-color:white;
+  padding:5px;
+  width:50%;
+  height:5%;
+}
+input[type=submit]{
+  background:linear-gradient(to bottom right, red,orange,purple);
+  border-radius:20px;
+  border-style:none;
+  padding:20px 150px;
+}
+input[type=submit]:hover{
+  background:linear-gradient(to bottom right,yellow, green,blue);
+  border-radius:20px;
+  border-style:none;
+  padding:20px 150px;
+}
+.button{
+  background:linear-gradient(to bottom right, red,orange,purple);
+  border-radius:20px;
+  border-style:none;
+  padding:20px 150px;
+  color:black;
+}
+.button:hover{
+  background:linear-gradient(to bottom right,yellow, green,blue);
+  border-radius:20px;
+  border-style:none;
+  padding:20px 150px;
+}
+a{
+    color:#34bdeb;
+    text-decoration:none;
+  }
+  a:hover{
+    color:#348ceb;
+    text-decoration:none;
+  }
+select{
+  background:transparent;
+  color:white;
+  font-size:1em;
+}
+.new{
+  background:transparent;
+  color:white;
+  border-color:white;
+  border-width:2px;
+  border-radius:5px;
+  border-style:solid;
+  font-size:1em;
+}
+.new1{
+  background:transparent;
+  color:white;
+  width:10%;
+  font-size:1em;
+}
+input .new{
+  border-color:white;
+  border-width:2px;
+  border-radius:5px;
+  border-style:solid;
+  font-size:1em;
+}
+.new::placeholder{
+  color:white;
+  font-size:1em;
+}

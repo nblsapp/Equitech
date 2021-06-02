@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block main %}
+<style>
+  img{
+    margin:4px;
+
+  }
+  a{
+    color:#34eb92;
+  }
+.table {
+  border-style:solid;
+  border-color:white;
+}
+
+.td, .th {
+  border: 1px;
+  border-style:dotted none dotted none;
+  text-align: left;
+  padding: 8px;
+}
+.th:nth-child(even) {
+  color:#79bd06;
+  font-weight:900;
+}
+.th:nth-child(odd) {
+  color:white;
+  font-weight:400;
+}
+</style>
+<img src={{image}} width=10%>
+<center>
+<h1 class='myDIV'>{{name}}</h1>
+<i><h2 style='color:#7c71f5;'>Teacher: {{teacher}}</h2></i>
+<div style='background:#454952;border-radius:25px;color:black;width:50%;height:100px;'>
+  <h3><a href='/delete'>Delete This Course</a><br>
+  <a href='/edit'>Edit This Course</a><br>
+  <a href='/editcourse'>Edit Course Content</a><br></h3>
+</div>
+</center>
+<h1>Zoom Links</h1>
+<h1>Notes</h1>
+{% for i in notes %}
+<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+{% endfor %}
+
+<h1>Classwork</h1>
+{% for i in cw %}
+<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+{% endfor %}
+
+<h1>Homework</h1>
+{% for i in hw %}
+<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+{% endfor %}
+
+<h1>Tests/Quizzes</h1>
+{% for i in quiz %}
+<p><img  width=20px src='/static/attachments/icons/puzzle.png'/><u>{{i["type"]}}: </u>{{i["name"]}} ({{i["date"]}})<br>
+{% endfor %}
+<h1>Grades</h1>
+<body>
+
+<h2>Average Grade: <span style='color:#810e9e;'>85%</span></h2>
+
+<table class='table'>
+  <tr>
+    <th class='th'>4.1_Test_Muscular_Systemassignment</th>
+    <th class='th'>80/100</th>
+  </tr>
+  <tr>
+    <th class='th'>Test_Muscular/IntegumentarySystemassessment</th>
+    <th class='th'>100/100</th>
+  </tr>
+   <tr>
+    <th class='th'>6.3_TestUnderstanding_Heartassessment Due</th>
+    <th class='th'>60/100</th>
+  </tr>
+  </tr>
+   <tr>
+    <th class='th'>8_Respiratory SystemQuiz</th>
+    <th class='th'>100/100</th>
+  </tr>
+  
+</table>
+<h1>Study - Guides</h1>
+{% for i in sg %}
+<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+{% endfor %}
+<h1>Weekly Schedules</h1>
+{% for i in ws %}
+<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+{% endfor %}
+<h1>Quizlets</h1>
+{% for i in qz %}
+<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+{% endfor %}
+<h1>Other Apps</h1>
+<h2>Khan Academy, Study.com, IXL</h2>
+<h1>Assignments [Schoology]</h1>
+{% endblock %}
