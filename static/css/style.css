@@ -59,26 +59,26 @@ input[type=number]{
   height:5%;
 }
 input[type=submit]{
-  background:linear-gradient(to bottom right, red,orange,purple);
+  background:#fcc203;
   border-radius:20px;
   border-style:none;
   padding:20px 150px;
 }
 input[type=submit]:hover{
-  background:linear-gradient(to bottom right,yellow, green,blue);
+  background:#fcc203;
   border-radius:20px;
   border-style:none;
   padding:20px 150px;
 }
 .button{
-  background:linear-gradient(to bottom right, red,orange,purple);
+  background:#fcc203;
   border-radius:20px;
   border-style:none;
   padding:20px 150px;
   color:black;
 }
 .button:hover{
-  background:linear-gradient(to bottom right,yellow, green,blue);
+  background:#fcc203;
   border-radius:20px;
   border-style:none;
   padding:20px 150px;
