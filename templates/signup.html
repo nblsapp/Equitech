@@ -12,10 +12,9 @@
 </style>
 <h1>TestPreparer SignUp</h1>
 <h1 style='color:red;'>{{error}}</h1>
-<h2>Made for Students. Designed by Students</h2>
+<h2>Please fill in all boxes!</h2>
 <form method='POST'>
-  <h1>Username will be your name for loging in and restoring accounts. It will also appear in your profile when sharing notes and study guides.</h1>
-  <input type='text' placeholder='username' name='username' value={{username}}><br>
+  <input type='text' placeholder='Username' name='username' value={{username}}><br>
   <input type='text' placeholder='First Name' name='fn' value={{first}}><br>
   <input type='text' placeholder='Last Name' name='ln' value={{last}}><br>
   <input type='email' placeholder='Email' name='email' value={{email}}><br>
@@ -25,6 +24,7 @@
   <span id='message'></span><br>
   <input type='submit' value='Sign Up!'>
 </form>
+<h1>Or <a href='/login'>Log In</a></h1>
 <script>
   var check = function() {
   if (document.getElementById('password').value ==

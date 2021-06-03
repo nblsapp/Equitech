@@ -69,7 +69,7 @@ input[type=submit]{
   padding:20px 150px;
 }
 input[type=submit]:hover{
-  background:#fcc203;
+  background:#03c6fc;
   border-radius:20px;
   border-style:none;
   padding:20px 150px;
@@ -82,7 +82,7 @@ input[type=submit]:hover{
   color:black;
 }
 .button:hover{
-  background:#fcc203;
+  background:#03c6fc;
   border-radius:20px;
   border-style:none;
   padding:20px 150px;

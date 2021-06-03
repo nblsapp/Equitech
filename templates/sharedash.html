@@ -26,6 +26,7 @@
 </style>
 </head>
 <body>
+<h1><a href='/shared/new'>Share a New File</a></h1><br>
 {% for i in new %}
 <a href={{'/shared/file/'+i["link"]}} target='_blank'><div class="file">
   <img src={{'/static/attachments/icons/'+i["type"]}} alt="Avatar" style="width:25%">
