@@ -5,7 +5,8 @@ __pycache__/
 
 #unused node_modules folder
 node_modules/
-static/json/
+#static/json/
+*.json
 # C extensions
 *.so
 
