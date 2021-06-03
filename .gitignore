@@ -7,6 +7,9 @@ __pycache__/
 node_modules/
 #static/json/
 *.json
+#txt files also don't need to be pushed
+*.txt
+
 # C extensions
 *.so
 
