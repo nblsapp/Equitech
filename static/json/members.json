@@ -110,5 +110,12 @@
         "last": "helth2",
         "email": "helth@gmail.com",
         "password": "6e641c37efba419e10a1b28a96d30b05"
+    },
+    {
+        "username": "",
+        "first": "",
+        "last": "",
+        "email": "",
+        "password": "d41d8cd98f00b204e9800998ecf8427e"
     }
 ]
