@@ -13,6 +13,8 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
+
+
 @app.errorhandler(404)
 def page_not_found(e):
 	return render_template('404.html'), 404

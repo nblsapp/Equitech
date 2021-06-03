@@ -110,17 +110,18 @@ input .new{
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: #fcc203;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
+  border-radius:20px;
   cursor: pointer;
 
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+  background-color: #03c6fc;
 }
 
 #myInput {
@@ -168,7 +169,7 @@ input .new{
 <h2>Search for your School</h2>
 
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"><p>Show Schools! (Click Me)</p></button>
+  <button onclick="myFunction()" class="dropbtn"><p>Open School List - Click Me</p></button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
     {% for i in listy %}
