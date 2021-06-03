@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#don't need cache
+*.cache
 #unused node_modules folder
 node_modules/
 #static/json/
