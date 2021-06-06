@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block main %}
+<center>
+<img src='https://cdn.discordapp.com/avatars/808435152270917654/17b1707fcb0ea9bf16b9465c03ff7424.png?size=256' width=80px style='border-radius:50%;'><br>
+<h1>{{username}}</h1>
+<h2>{{name}}</h2>
+<h2>{{mail}}</h2>
+<h2>Bio: (Click to Edit)</h2>
+<form method='POST'>
+<textarea name='bio' style="background:transparent;border-style:solid;border-width:5px;border-color:white;color:white;font-family:'Lexend Deca', sans-serif;width:50%;height:300px;resize: none;" placeholder='You do not have a bio! Type on this to remove this message!'>{{bio}}</textarea><br>
+<input type='submit' value='Save!'>
+</form>
+</center>
+{% endblock %}

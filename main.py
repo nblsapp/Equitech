@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request,make_response,redirect,flash, url_for
+import requests
 from flask_mail import Mail, Message
 app = Flask(__name__)
 mail= Mail(app)
@@ -25,11 +26,63 @@ def page_not_found1(e):
 @app.route('/cookies')
 def cookies():
   return render_template('cookies.html')
+@app.route('/pp')
+def pp():
+  return render_template('pp.html')
+@app.route('/about')
+def about():
+  return render_template('about.html')
+@app.route('/profile')
+def profile():
+  mail = request.cookies.get('login')
+  if mail==None:
+    return redirect('/login')
+  
+  with open('static/json/members.json') as file:
+    file = json.load(file)
+  with open('static/json/bio.json') as file2:
+    file2 = json.load(file2)
+  try:
+    bio = file2[mail]
+  except:
+    bio = ''
 
+  for i in range(0,len(file)):
+    if file[i]["email"]==mail:
+      break
+  
+  user = file[i]
+  username = user["username"]
+  name = user["first"]+' '+user["last"]
+  return render_template('profile.html',name=name,username=username, mail=mail, bio=bio)
+@app.route('/profile',methods=['POST'])
+def profile2():
+  mail = request.cookies.get('login')
+  with open('static/json/bio.json') as file2:
+    file2 = json.load(file2)
+  a = request.form['bio']
+  file2[mail]=a
+  with open('static/json/bio.json','w') as out:
+    json.dump(file2,out)
+  return redirect('/profile')
+@app.route('/aops')
+def aops():
+  parameter=request.args.get('psw')
+  if parameter==None:
+    return 'Please fill in the correct parameters. FORMAT: /aops?psw=<psw>'
+  if parameter!='grind':
+    return 'wrong psw'
+  #return requests.get('https://artofproblemsolving.com/alcumus/profile/me').content
+  #return render_template('aops.html')
+  
+  
 
+@app.route('/discord')
+def disc():
+  return redirect('https://discord.gg/Ac35ApunJY')
 @app.route('/disclaimer')
 def disclaimer():
-  return "DISCLAIMER: TestPreparer was created by students at  Basis Independent Silicon Valley in San Jose, CA, but is in no way affiliated with the school or it's faculty and staff. We welcome feedback from our users and are actively working on features and improvements."
+  return render_template('disclaimer.html')
 
 
 @app.route('/servers')
