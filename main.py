@@ -25,6 +25,33 @@ def page_not_found1(e):
 @app.route('/question')
 def question():
   return render_template('question.html')
+@app.route('/question',methods=['POST'])
+def question2():
+  query = request.form['text']
+  from pprint import pprint
+  import requests
+  import os
+  import urllib.parse
+
+  appid = os.getenv('WA_APPID')
+
+  query = urllib.parse.quote_plus("lifespan of a mosquito")
+  query_url = f"http://api.wolframalpha.com/v2/query?" \
+        f"appid={appid}" \
+        f"&input={query}" \
+        f"&format=plaintext" \
+        f"&output=json"
+
+  r = requests.get(query_url).json()
+
+  data = r["queryresult"]["pods"][0]["subpods"][0]
+  datasource = ", ".join(data["datasources"]["datasource"])
+  microsource = data["microsources"]["microsource"]
+  plaintext = data["plaintext"]
+
+  return (f"Result: '{plaintext}' from {datasource} ({microsource}).")
+  # Result: '(9.2 to 11, 52 to 60) days' from AmazingNumbers, TheWikimediaFoundationIncWikipedia (SpeciesData).
+
 @app.route('/cookies')
 def cookies():
   return render_template('cookies.html')
