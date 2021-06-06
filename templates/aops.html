@@ -1,6 +1,122 @@
 {% extends "layout.html" %}
 {% block main %} 
+<style>
+  h2 {
+  color:#0062ff;
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #0062ff; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   border-right: 300px solid transparent;
+  border-left: 5px solid transparent;
+} 
+
+h2 span { 
+    background:#333436; 
+    padding:0 10px; 
+}
+label {
+  background-color: #00c3ff;;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.lol {
+  background-color: #00c3ff;;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+#progress p
+{
+	display: block;
+	width: 240px;
+	padding: 2px 5px;
+	margin: 2px 0;
+	border: 1px inset #446;
+	border-radius: 5px;
+}
+#progress p.success
+{
+	background: #0c0 none 0 0 no-repeat;
+}
+
+#progress p.failed
+{
+	background: #c00 none 0 0 no-repeat;
+}
+</style>
 <center>
-<h1>AoPS!</h1>
+<h1><span style='border-radius:10px;color:white;background:green;font-size:1em;margin-right:3px;'>Beta</span>AoPS!</h1>
+<h2><span>Step 1</span></h2>
+<p>Go to <a href='https://artofproblemsolving.com/alcumus/profile/me' target='_blank'>https://artofproblemsolving.com/alcumus/profile/me</a>. Please login.</p>
+<img src='static/attachments/aops/Screen Shot 2021-06-06 at 6.50.32 AM.png' width=50%>
+<h2><span>Step 2</span></h2>
+<p style='color:red;'>⚠️THIS ONLY WORKS ON A COMPUTER. PLEASE DO NOT USE A MOBILE DEVICE OR ELSE THIS WON'T WORK</p>
+<p>Use the command <code id='code'>⌘ + S</code> to get an HTML file. Save that file! MAKE SURE TO CLICK Webpage, COMPLETE.</p>
+<img src='static/attachments/aops/Screen Shot 2021-06-06 at 6.56.02 AM.png' width=50%>
+<h2><span>Step 3</span></h2>
+<p>Now you should have two files. One <span style='color:green;'>folder</span> and one <span style='color:green;'>HTML file</span>. BOTH are needed. Do not delete!</p>
+<p>Now, please upload with the button below:</p>
+<input type="file" id="upload" name="myfile" hidden/><br>
+<label for="upload">Choose file</label>
+<input class='lol' type="submit" value="Upload!">
+<div class="progress">
+    <div class="bar"></div >
+    <div class="percent">0%</div >
+</div>
+
+<div id="status"></div>
+<h2><span>Step 4</span></h2>
+<p>When you submit your file, you will be redirected to your dashboard!</p>
 </center>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+var is_OSX = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+var is_iOS = /(iPhone|iPod|iPad)/i.test(navigator.platform);
+var is_Android = /(android)/i.test(navigator.platform);
+var is_Mac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+var is_iPhone = navigator.platform == "iPhone";
+var is_iPod = navigator.platform == "iPod";
+var is_iPad = navigator.platform == "iPad";
+
+/* Output */
+var out = document.getElementById('code');
+if (!is_OSX) out.innerHTML = "CTRL + S";
+if (is_Android) out.innerHTML = "NOT AVAILABLE ON ANDROID";
+if (is_Mac) out.innerHTML = "⌘ + S";
+if (is_iOS) out.innerHTML = "NOT AVAILABLE ON IOS";
+
+$(function() {
+
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+
+    $('form').ajaxForm({
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+        }
+    });
+}); 
+</script>
+
 {% endblock %}

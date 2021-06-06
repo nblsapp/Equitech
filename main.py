@@ -22,7 +22,9 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found1(e):
 	return render_template('500.html'), 500
-
+@app.route('/question')
+def question():
+  return render_template('question.html')
 @app.route('/cookies')
 def cookies():
   return render_template('cookies.html')
@@ -67,13 +69,7 @@ def profile2():
   return redirect('/profile')
 @app.route('/aops')
 def aops():
-  parameter=request.args.get('psw')
-  if parameter==None:
-    return 'Please fill in the correct parameters. FORMAT: /aops?psw=<psw>'
-  if parameter!='grind':
-    return 'wrong psw'
-  #return requests.get('https://artofproblemsolving.com/alcumus/profile/me').content
-  #return render_template('aops.html')
+  return render_template('aops.html')
   
   
 
