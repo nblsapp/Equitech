@@ -1,0 +1,141 @@
+{% extends "layout.html" }
+<link rel="stylesheet" href="/path/to/styles/default.css">
+<script src="/path/to/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<style>
+  
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap,900&display=swap');
+body{
+  font-family: 'Lato', sans-serif;
+  color:white;
+  background:#282836;
+}
+.avatar{
+  border-radius:50%;
+  margin:5px;
+}
+
+.b{
+  font-family: 'Lato', sans-serif;
+  font-weight:900;
+}
+.collapsible {
+  font-family: 'Lato', sans-serif;
+  background-color: rgba(0, 0, 0,0.2);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: rgba(0, 0, 0,0.1);
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: transparent;
+}
+a{
+  color:yellow;
+  text-decoration:none;
+}
+a:hover{
+  color:#14FF00;
+}
+select{
+  font-family: 'Lato', sans-serif;
+  color:white;
+  background:transparent;
+  font-size:2em;
+}
+</style>
+
+<center>
+
+<h1>Welcome to Python!</h1>
+<h2><i>The World's Most Popular Coding Language</i></h2>
+<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png' width=20%>
+
+<pre><code>print('Hello World!')</code></pre>
+</center>
+<div id='main' style='width:75%'>
+<form method='POST' action='/try' id='formID'>
+<textarea id='editor' name='mycode'>&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;</textarea>
+
+
+<input type='submit' class='run' value='Run!'>
+<script>
+  var myForm = document.getElementById('formID');
+myForm.onsubmit = function() {
+    var w = window.open('about:blank','Popup_Window','toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=400,height=300,left = 312,top = 234');
+    this.target = 'Popup_Window';
+};
+</script>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap');
+  .run{
+    background:transparent;
+    height:60px;
+    width:100px;
+    border-radius:10px;
+    color:green;
+    border-style:solid;
+    border-color:grey;
+    border-width:1px;
+
+  }
+  .run:active{
+    outline:none;
+
+  }
+  .run:hover{
+    color:white;
+    background:green;
+    border-color:green;
+  }
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  size:1.5em;
+}
+
+</style>
+</form>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+</link>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/python/python.min.js">
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js">
+</script>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/dracula.min.css">
+</link>
+
+<script>
+  let cm = new CodeMirror.fromTextArea(document.getElementById("editor"), {
+  lineNumbers: true, 
+  mode: "python", 
+  theme: "dracula",
+  lineWrapping: false,
+  parserConfig: {'pythonVersion': 2, 'strictErrors': true}
+  
+});
+CodeMirror.commands.autocomplete = function(cm) {
+     CodeMirror.simpleHint(cm, CodeMirror.pythonHint);
+   }
+</script>
+
+

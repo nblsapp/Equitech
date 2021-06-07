@@ -15,7 +15,29 @@ app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 
+@app.route('/try',methods=['POST'])
+def tryit():
+  code=request.form['mycode']
+  import io
+  import contextlib
+  import sys
 
+  stdout = io.StringIO()
+  try:
+      with contextlib.redirect_stdout(stdout):
+            exec(
+               code
+            )
+
+            
+            result = f"{stdout.getvalue()}"
+  except Exception as e:
+        result = f"<span  style='color:#ed004b;'>{type(e).__name__}:  {e.args}</span>"
+  
+  return "<style>body{background:black;color:white;font-family:'Arial';}h1{background:#363636;border-radius:10px;padding:5px;width:150px;}</style><h1>Console</h1>"""+result
+@app.route('/python')
+def python():
+  return render_template('python.html')
 @app.errorhandler(404)
 def page_not_found(e):
 	return render_template('404.html'), 404
