@@ -2,9 +2,65 @@
 {% block main %}
 <h1>Create a Server</h1>
 <form method='POST'>
-<h3>Server Name</h3>
-<input type='text' name='name'>
-<input type='submit'>
+<input style='height:30px;border-radius:5px;outline:none;' type='text' name='name' placeholder='Server Name'>
+<input style='border-radius:5px;' type='submit' value='Create'>
 </form>
+<form method='POST'>
+<h1>Join a Server</h1>
+<input style='height:30px;border-radius:5px;outline:none;' type='text' name='name' placeholder='Invite Link | Format: https://testpreparer.gq/invite/AAAAA OR AAAAAA'>
+<input style='border-radius:5px;' type='submit' value='Join'>
+</form>
+{% if status == True %}
+<h1>Your Servers</h1>
+<style>
+  .card{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:150px;
+    height:200px;
+    margin:5px;
+    float:left;
+    background:#4f5959; 
+    border-radius:10px;
+    color:white;
+  }
 
+  card img{
+    text-align:center;
+  }
+  .card2{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:100%;
+    height:60px;
+    background:#4f5959;
+    border-radius:10px; 
+    color:white;
+    margin-bottom:20px;
+	overflow: hidden;
+
+  }
+  .card:hover{
+    border-style:none none solid none;
+    border-color:#fcc203;
+    color:white;
+  }
+  .card img{
+    width:90px;
+  }
+</style>
+{% for i in servers %}
+<a href='/question'><div class="card">
+  <center>
+  <div class="container" style='color:white;'>
+    <h1 style="text-align: center;color:white;" ><b>{{i}}</b></h1> 
+  </div>
+</div></a>
+{% endfor %}
+{% endif %}
+<br>
+<h1 style='clear:both;'>What are servers?</h1>
+<p>Servers are a way to hangout, start a study group, play games, talk, and share files and events. Everything in your server is customizable to your needs!</p>
 {% endblock %}

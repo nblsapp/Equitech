@@ -132,7 +132,17 @@ def disclaimer():
 
 @app.route('/servers')
 def servers():
-  return render_template('server.html')
+  username = request.cookies.get('login')
+  with open('static/json/servermembers.json') as file:
+    file = json.load(file)
+  servers = []
+  status = False
+  try:
+    servers = file[username]
+    status = True
+  except:
+    status = False
+  return render_template('server.html',status=status,servers=servers)
 
 
 
@@ -156,13 +166,15 @@ def servers1():
   file.append(thing)
   with open('static/json/servers.json','w') as out:
     file=json.dump(file,out,indent=4)
-  return ('Your link is <a href="https://testpreparer.gq/invite/'+link+'">https://testpreparer.gq/invite/'+link+'</a>')
+  return redirect(f'https://testpreparer.gq/invite/{link}')
 
 
 @app.route('/invite/<code>')
 def invite(code):
   with open('static/json/servers.json','r') as file:
     file=json.load(file)
+  
+  
   found=False
   for i in range(0,len(file)):
     if file[i][1][31:len(file[i][1])]==code:
@@ -173,7 +185,8 @@ def invite(code):
   if found==False:
     return render_template('join.html',vaild=False)
   username = request.cookies.get('login')
-
+  
+  
   return render_template('join.html',valid=True,name=name,username=username,join=join)
 
 
@@ -187,7 +200,8 @@ def invite2(code):
   for i in range(0,len(file)):
     if file[i][1][31:len(file[i][1])]==code:
       server=file[i][0]
-      file[i][-2].append(username)
+      if username not in file[i][-2]:
+        file[i][-2].append(username)
       messages = file[i][-3]
       if len(messages) == 0:
         messages.append(['System','No Current Messages'])
@@ -197,6 +211,14 @@ def invite2(code):
   
   with open('static/json/servers.json','w') as out:
     json.dump(file,out,indent=4)
+  with open('static/json/servermembers.json','r') as sm:
+    sm=json.load(sm)
+  try:
+    sm[username].append(code)
+  except:
+    sm[username] = [code]
+  with open('static/json/servermembers.json','w') as out:
+    json.dump(sm,out,indent=4)
   return render_template('inweb.html',server=server,name=request.form['name'],username=request.cookies.get('login'),stuff='height:'+str(30*40)+';',messages=messages,link=code)
 
 @app.route('/submit/<code>',methods=['POST'])

@@ -1,5 +1,5 @@
-{% extends "layout.html" }
-<link rel="stylesheet" href="/path/to/styles/default.css">
+{% extends "layout.html" %}
+{% block main %}
 <script src="/path/to/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -59,12 +59,6 @@ select{
 </style>
 
 <center>
-
-<h1>Welcome to Python!</h1>
-<h2><i>The World's Most Popular Coding Language</i></h2>
-<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png' width=20%>
-
-<pre><code>print('Hello World!')</code></pre>
 </center>
 <div id='main' style='width:75%'>
 <form method='POST' action='/try' id='formID'>
@@ -139,3 +133,4 @@ CodeMirror.commands.autocomplete = function(cm) {
 </script>
 
 
+{% endblock %}
