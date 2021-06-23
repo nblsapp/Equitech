@@ -14,7 +14,17 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-
+@app.route('/testing/<file>')
+def fil2(file):
+  return render_template(file)
+@app.route('/partners/cbot/redeem')
+def cbot_premium():
+  username = request.cookies.get('login')
+  if username==None:
+    login=False
+  else:
+    login = True
+  return render_template('c_premium.html',login=login)
 @app.route('/try',methods=['POST'])
 def tryit():
   code=request.form['mycode']
@@ -390,6 +400,7 @@ def main():
 
 @app.route('/login')
 def login():
+  
   username = request.cookies.get('login')
   if username!=None:
     return redirect('/')
@@ -427,6 +438,9 @@ def main1():
 
 @app.route('/signup')
 def signup():
+  token = request.args.get('token')
+  if token == 'cbot':
+    return render_template('cbotpremiumsignin.html')
   username = request.cookies.get('login')
   if username!=None:
     return redirect('/')
@@ -465,6 +479,8 @@ def signup1():
       var=json.dump(var, file,indent=4)
     if check=='no':
       return redirect('/login')
+    if check == 'cbot':
+      check = 'https://testpreparer.gq/partners/cbot/redeem'
     resp = make_response(redirect(check))
     resp.set_cookie('login', email)
     resp.set_cookie('psw', psw)

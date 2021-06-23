@@ -1,0 +1,168 @@
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Code by Angela Delise  
+ https://codepen.io/angeladelise/pen/ExNZRxQ
+ -->
+
+</head>
+
+<body>
+  <button id="delete" class="btn-primary">
+    <svg viewBox="0 0 448 512" width="100" title="trash-alt">
+      <path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z" />
+    </svg> Delete
+  </button>
+
+  <div id="notification" class="notification">
+    <svg class="notification__warning" viewBox="0 0 512 512" width="100" title="exclamation-circle">
+      <path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z" />
+    </svg>
+    <p>Item has been deleted</p>
+    <button class="btn-secondary">Undo</button>
+    <button id="close" class="notification__close">
+      <svg viewBox="0 0 352 512" width="100" title="times">
+        <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
+      </svg>
+    </button>
+  </div>
+</body>
+
+<!-- 
+ 
+
+
+
+-->
+<style>
+  /*   color variables */
+$clr-primary: #0e48fe;
+$clr-primary-hover: #29e6a7;
+$clr-primary-dark: #039d69;
+$clr-gray100: #f9fbff;
+$clr-gray150: #f4f6fb;
+$clr-gray200: #eef1f6;
+$clr-gray300: #e1e5ee;
+$clr-gray400: #767b91;
+$clr-gray500: #4f546c;
+$clr-gray600: #2a324b;
+$clr-gray700: #161d34;
+$clr-notification-hover: #ffebeb;
+$clr-notification: #ffc2c2;
+$clr-notification-dark: #e00000;
+
+/*   border radius */
+$radius: 0.2rem;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Mukta, sans-serif;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: $clr-gray500;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: $clr-primary;
+  border-radius: $radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: $clr-gray200;
+  padding: 0.5rem;
+
+  svg {
+    width: 1rem;
+    fill: $clr-gray200;
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  font-weight: bold;
+  color: $clr-primary;
+}
+
+.notification {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+  background-color: $clr-notification-hover;
+  border-radius: $radius;
+  overflow: hidden;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &__warning {
+    width: 1.5rem;
+    margin-left: 1rem;
+    fill: $clr-notification-dark;
+  }
+
+  &__close {
+    background-color: $clr-notification;
+    padding: 1rem;
+    display: flex;
+    cursor: pointer;
+
+    svg {
+      width: 1rem;
+      fill: $clr-notification-dark;
+    }
+  }
+
+  &-show {
+    animation: warning 400ms ease-in-out forwards;
+    display: flex;
+  }
+}
+
+@keyframes warning {
+  0% {
+    opacity: 0;
+    top: 2rem;
+  }
+  5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    top: 4rem;
+  }
+}
+
+</style>
+
+<script>
+  const deleteBtn = document.getElementById("delete");
+const notification = document.getElementById("notification");
+const closeBtn = document.getElementById("close");
+
+deleteBtn.addEventListener("click", () => {
+  notification.classList.add("notification-show");
+});
+
+closeBtn.addEventListener("click", () => {
+  notification.classList.remove("notification-show");
+});
+
+</script>
