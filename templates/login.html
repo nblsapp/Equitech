@@ -5,7 +5,7 @@
 <h1>Login to TestPreparer LMS</h1>
 <h1 style='color:red;'>{{error}}</h1>
 <h2>All fields are required!</h2>
-<form method='POST'>
+<form autocomplete="off" method='POST'>
   <input style='width:280px;' type='email' placeholder='Email' name='email' value={{name}}><br>
   <input style='width:280px;' type='password' placeholder='Password' name='password' value={{psw}}><br>
   <h4><input type='submit' value='Log In!'>&nbsp;&nbsp; <a href='/signup'>Sign Up!</a>&nbsp;&nbsp;<a href='/recovery'>Forgot Password!</a></h4>

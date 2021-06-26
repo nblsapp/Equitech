@@ -1,14 +1,19 @@
 {% extends "layout.html" %}
 {% block main %}
 <h1>Create a Server</h1>
-<form method='POST'>
-<input style='height:30px;border-radius:5px;outline:none;' type='text' name='name' placeholder='Server Name'>
+<form autocomplete="off" method='POST'>
+<input style='height:60px;border-radius:5px;outline:none;width:80%;' type='text' name='name' placeholder='Server Name'>
+<input type='hidden' value='1'>
 <input style='border-radius:5px;' type='submit' value='Create'>
 </form>
-<form method='POST'>
+<form method='POST' autocomplete="off">
 <h1>Join a Server</h1>
-<input style='height:30px;border-radius:5px;outline:none;' type='text' name='name' placeholder='Invite Link | Format: https://testpreparer.gq/invite/AAAAA OR AAAAAA'>
+<input style='height:60px;border-radius:5px;outline:none;width:80%;' type='text' name='name' placeholder='Invite Link'>
+<input type='hidden' value='2'>
 <input style='border-radius:5px;' type='submit' value='Join'>
+<h3>Invite Link Formats</h3>
+<p>hTKzmak</p>
+<p>https://testpreparer.gq/hTKzmak</p>
 </form>
 {% if status == True %}
 <h1>Your Servers</h1>
@@ -52,10 +57,11 @@
   }
 </style>
 {% for i in servers %}
-<a href='/question'><div class="card">
+<a href={{i[1]}}><div class="card">
   <center>
   <div class="container" style='color:white;'>
-    <h1 style="text-align: center;color:white;" ><b>{{i}}</b></h1> 
+    <h3 style="text-align: center;color:white;" ><b>{{i[0]}}</b></h3> 
+    <h4>Owner: {{i[2]}}</h4>
   </div>
 </div></a>
 {% endfor %}
