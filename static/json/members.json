@@ -110,5 +110,12 @@
         "last": "helth2",
         "email": "helth@gmail.com",
         "password": "6e641c37efba419e10a1b28a96d30b05"
+    },
+    {
+        "username": "",
+        "first": "Nick",
+        "last": "Ma",
+        "email": "nick.ma1221@gmail.com",
+        "password": "61c26e537310bad0cee9813a41156e2d"
     }
 ]

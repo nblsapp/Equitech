@@ -8,6 +8,21 @@
  
 </div>
 <style>
+
+:root {
+  --black: #0000;
+  --dark: #333436;
+  --white: white;
+  --yellow: #FCC101;
+  --darkerYellow:#d69f04;
+  --skyBlue: #35BCEA;
+  --grey: #4F5959;
+  --secondaryBlue: #348ceb;
+  --textGrey: #808080;
+  --green: #04c23a;
+  --red:#eb4242;
+  --orange:#eba53d;
+}
   #loader-wrapper {
     position: fixed;
     top: 0;
@@ -25,7 +40,7 @@
     height: 150px;
     margin: -75px 0 0 -75px;
  
-    border: 3px solid #3498db;
+    border: 3px solid var(--red);
     z-index: 1500;
 }
 #loader:before {
@@ -35,7 +50,7 @@
     left: 5px;
     right: 5px;
     bottom: 5px;
-    border: 3px solid #e74c3c;
+    border: 3px solid var(--yellow);
 }
 #loader:after {
     content: "";
@@ -44,20 +59,20 @@
     left: 15px;
     right: 15px;
     bottom: 15px;
-    border: 3px solid #f9c922;
+    border: 3px solid var(--green);
 }
 /* change border to transparent and set only border-top to a solid color */
 #loader {
     border: 3px solid transparent;
-    border-top-color: #3498db;
+    border-top-color: var(--red);
 }
 #loader:before {
     border: 3px solid transparent;
-    border-top-color: #e74c3c;
+    border-top-color: var(--yellow);
 }
 #loader:after {
     border: 3px solid transparent;
-    border-top-color: #f9c922;
+    border-top-color: var(--green);
 }
 #loader {
     border-radius: 50%;

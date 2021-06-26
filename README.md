@@ -1,2 +1,2 @@
-X# TestPreparer
+# TestPreparer
 Welcome to TestPreparer!

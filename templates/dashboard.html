@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block main %}
+<style>
+  .card{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:300px;
+    height:400px;
+    margin:5px;
+    float:left;
+    background:#4f5959; 
+    border-radius:10px;
+    color:white;
+  }
+
+  card img{
+    text-align:center;
+  }
+  .card2{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:100%;
+    height:60px;
+    background:#4f5959;
+    border-radius:10px; 
+    color:white;
+    margin-bottom:20px;
+	overflow: hidden;
+
+  }
+  .card:hover{
+    border-style:none none solid none;
+    border-color:#fcc203;
+    color:white;
+  }
+  .card img{
+    width:90px;
+  }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+<div class='card2' >
+
+<h1 style="float: left;">TestPreparer</h1>
+
+
+</div>
+<br>
+<a href='/education'><div class="card">
+  <center><img src='https://discord.com/assets/9515c498b6c2e3d2e3e3b5ad73b6c22f.svg' alt="Avatar" style="width:100%">
+  <div class="container">
+    <h1><b>TestPreparer Education</b></h1> 
+  </div></center>
+</div></a>
+<a href='/community'><div class="card">
+  <center><img src='/static/assets/Chat.svg' alt="Avatar" style="width:100%">
+  <div class="container">
+    <h1><b>TestPreparer Community</b></h1> 
+  </div></center>
+</div></a>
+<a href='/extentions'><div class="card">
+  <center><img src='/static/assets/Extentions.svg' alt="Avatar" style="width:100%">
+  <div class="container">
+    <h1><b>TestPreparer Extentions</b></h1> 
+  </div></center>
+</div></a>
+<a href='/account'><div class="card">
+  <center><img src='/static/assets/TestPreparerAccount.svg' alt="Avatar" style="width:100%">
+  <div class="container">
+    <h1><b>TestPreparer Account</b></h1> 
+  </div></center>
+</div></a>
+<a href='/courses'><div class="card">
+  <center><img src='https://discord.com/assets/0933c4860868252befc05509165a1db4.svg' alt="Avatar" style="width:100%">
+  <div class="container">
+    <h1><b>About TestPreparer</b></h1> 
+  </div></center>
+</div></a>
+{% endblock %}

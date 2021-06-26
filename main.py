@@ -14,6 +14,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
+import app2
 @app.route('/testing/<file>')
 def fil2(file):
   return render_template(file)
@@ -25,6 +26,9 @@ def cbot_premium():
   else:
     login = True
   return render_template('c_premium.html',login=login)
+@app.route('/premium')
+def premium():
+  return render_template('premium.html')
 @app.route('/try',methods=['POST'])
 def tryit():
   code=request.form['mycode']
@@ -54,6 +58,9 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found1(e):
 	return render_template('500.html'), 500
+@app.errorhandler(400)
+def page_not_found2(e):
+	return render_template('400.html'), 400
 @app.route('/question')
 def question():
   return render_template('question.html')
@@ -93,7 +100,7 @@ def pp():
 @app.route('/about')
 def about():
   return render_template('about.html')
-@app.route('/profile')
+@app.route('/account')
 def profile():
   mail = request.cookies.get('login')
   if mail==None:
@@ -116,7 +123,7 @@ def profile():
   username = user["username"]
   name = user["first"]+' '+user["last"]
   return render_template('profile.html',name=name,username=username, mail=mail, bio=bio)
-@app.route('/profile',methods=['POST'])
+@app.route('/account',methods=['POST'])
 def profile2():
   mail = request.cookies.get('login')
   with open('static/json/bio.json') as file2:
@@ -140,7 +147,7 @@ def disclaimer():
   return render_template('disclaimer.html')
 
 
-@app.route('/servers')
+@app.route('/community')
 def servers():
   username = request.cookies.get('login')
   with open('static/json/servermembers.json') as file:
@@ -156,7 +163,7 @@ def servers():
 
 
 
-@app.route('/servers',methods=['POST'])
+@app.route('/community',methods=['POST'])
 def servers1():
   name=request.form['name']
   digits=['a','b','c','d','e','f','g','h','i','j','k','l','m','n' 'o','p','q','r','s','t','u','v','w','x','y','z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N','O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X','Y', 'Z','1','2','3','4','5','6','7','8','9','0']
@@ -404,7 +411,7 @@ def login():
   username = request.cookies.get('login')
   if username!=None:
     return redirect('/')
-  return render_template('index.html')
+  return render_template('login.html')
 
 
 @app.route('/login',methods=['POST'])
@@ -424,7 +431,7 @@ def main1():
       not_found=False
       break
   if not_found==True:
-    return render_template('index.html',name=name,psw=psw,error='Please create your account using the Sign Up button below!')
+    return render_template('login.html',name=name,psw=psw,error='Please create your account using the Sign Up button below!')
   else:
     if var[value]["password"]==psw:
       resp = make_response(redirect('/'))
@@ -432,7 +439,7 @@ def main1():
       resp.set_cookie('psw', psw)
       return resp 
     else:
-      return render_template('index.html',name=name,psw=psw,error='Wrong Password!!!')
+      return render_template('login.html',name=name,psw=psw,error='Wrong Password!!!')
   return redirect('/')
 
 
@@ -492,7 +499,7 @@ def zoom():
     return redirect('/login')
   username = request.cookies.get('login')
   if username==None:
-    return render_template('index.html')
+    return render_template('login.html')
   return render_template('zoom.html')
 @app.route('/zoom',methods=['POST'])
 def join():
@@ -503,6 +510,9 @@ def join():
 def launch():
   return render_template('app.html')
 @app.route('/app')
+def mainlol():
+  return render_template('dashboard.html')
+@app.route('/education')
 def courses():
   username = request.cookies.get('login')
   if username==None:

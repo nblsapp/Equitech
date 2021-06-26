@@ -41,22 +41,22 @@
 <h1>Zoom Links</h1>
 <h1>Notes</h1>
 {% for i in notes %}
-<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+<img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
 {% endfor %}
 
 <h1>Classwork</h1>
 {% for i in cw %}
-<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+<img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
 {% endfor %}
 
 <h1>Homework</h1>
 {% for i in hw %}
-<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+<img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
 {% endfor %}
 
 <h1>Tests/Quizzes</h1>
 {% for i in quiz %}
-<p><img  width=20px src='/static/attachments/icons/puzzle.png'/><u>{{i["type"]}}: </u>{{i["name"]}} ({{i["date"]}})<br>
+<p><img  width=20px src='/static/assets/icons/puzzle.png'/><u>{{i["type"]}}: </u>{{i["name"]}} ({{i["date"]}})<br>
 {% endfor %}
 <h1>Grades</h1>
 <body>
@@ -85,15 +85,15 @@
 </table>
 <h1>Study - Guides</h1>
 {% for i in sg %}
-<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+<img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
 {% endfor %}
 <h1>Weekly Schedules</h1>
 {% for i in ws %}
-<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+<img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
 {% endfor %}
 <h1>Quizlets</h1>
 {% for i in qz %}
-<img  width=20px src={{'/static/attachments/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
+<img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
 {% endfor %}
 <h1>Other Apps</h1>
 <h2>Khan Academy, Study.com, IXL</h2>

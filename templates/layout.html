@@ -33,7 +33,7 @@ twemoji.parse(document.body);
     <link rel="shortcut icon" type="image/jpg" href="https://cdn.discordapp.com/icons/849751839972130816/c57cd596fa8553bff4e6c8b4017d0c44.png"/>
 
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet" id='swap'/>
+    <link href={{"/static/css/style.css?version=" ~ range(1, 100000000) | random}} rel="stylesheet" id='swap'/>
     <link href="/static/css/main.css" rel="stylesheet" />
     <script src="/static/script.js"></script>
   </head>
@@ -164,10 +164,12 @@ twemoji.parse(document.body);
       }
       function mode(){
         if (document.getElementById('remember').checked) {
-          swapStyleSheet("static/css/style.css");
+          swapStyleSheet("static/css/style.css?version="+Math.floor(Math.random() * 100000000););
+          alert('Success');
         }
         else{
-          swapStyleSheet("static/css/white.css");
+          swapStyleSheet("static/css/white.css?version="+Math.floor(Math.random() * 100000000););
+          alert('Success');
         }
       }
     </script>

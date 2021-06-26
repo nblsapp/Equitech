@@ -50,9 +50,38 @@
     color: #333436;
     transition-delay:0.1s;
   }
+  .announcement{
+    //#a83246
+    //168, 50, 70
+    float:right;
+    background-color:rgba(168, 50, 70,0.3);
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    left:60%;
+    top: 30px;
+    border-style:none none solid none;
+    border-color:#a83246;
+    border-width:3px;
+  }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <center>
+<div class='announcement active' id='1'>
+   <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("1").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
+
+   
+   <span style='color:#a83246;font-weight:800;'><br><img width=15px src="https://i.pinimg.com/originals/5b/bd/42/5bbd42954fe836a44d0eb42f4d9cd69d.png">Country Bot is Now Partnered with Testpreparer!</span>
+  Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country...&nbsp;&nbsp;&nbsp;&nbsp;<button id="change">(Read More)</buttom>
+</div>
+<div class='announcement' id="2" style="display:none;">
+    <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("2").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
+
+   
+   <span style='color:#a83246;font-weight:800;'><br><img width=15px src="https://i.pinimg.com/originals/5b/bd/42/5bbd42954fe836a44d0eb42f4d9cd69d.png">Country Bot is Now Partnered with Testpreparer!</span>
+  Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country in the world. You can even create your own country and compete against your friends to become the biggest. And finally, its updated almost every week. Ask questions in the support server!<br>• <a href='https://discord.com/api/oauth2/authorize?client_id=810662403217948672&permissions=2048&scope=bot%20applications.commands'>Click Me for Bot Invite!</a><br>• <a href='https://discord.com/invite/hCgh9wngkS'>Click Me for Support Server</a><br>• <a href='/partners/cbot/redeem'>Click me for FREE country bot premium!</a>
+  </p>
+</div>
 {% if token == False %}
 <a href='/launch'><button class='launchTOP'>Launch App</button></a>
 {% endif %}
@@ -69,6 +98,15 @@
 {% if token == True %}
 <a href='/login'><button class='launch'>Try for Free!</button></a>
 {% endif %}<br>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$('#change').on('click',function(){
+    if($('#1').css('display')!='none'){
+    $('#2').show().siblings('div').hide();
+    }else if($('#2').css('display')!='none'){
+        $('#1').show().siblings('div').hide();
+    }
+});
+</script>
 
 {% endblock %}
