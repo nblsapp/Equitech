@@ -63,17 +63,30 @@
     border-style:none none solid none;
     border-color:#a83246;
     border-width:3px;
+    }
+  .announcement_chb{
+    float:right;
+    background-color:rgba(255,165,0,0.8);
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    left:60%;
+    top: 200px;
+    border-style:none none solid none;
+    border-color:orange;
+    border-width:3px;
   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <center>
-<div class='announcement active' id='1'>
+<div class='announcement' id='1'>
    <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("1").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
 
    
    <span style='color:#a83246;font-weight:800;'><br><img width=15px src="https://i.pinimg.com/originals/5b/bd/42/5bbd42954fe836a44d0eb42f4d9cd69d.png">Country Bot is Now Partnered with Testpreparer!</span>
   Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country...&nbsp;&nbsp;&nbsp;&nbsp;<button id="change">(Read More)</buttom>
 </div>
+
 <div class='announcement' id="2" style="display:none;">
     <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("2").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
 
@@ -82,6 +95,16 @@
   Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country in the world. You can even create your own country and compete against your friends to become the biggest. And finally, its updated almost every week. Ask questions in the support server!<br>• <a href='https://discord.com/api/oauth2/authorize?client_id=810662403217948672&permissions=2048&scope=bot%20applications.commands'>Click Me for Bot Invite!</a><br>• <a href='https://discord.com/invite/hCgh9wngkS'>Click Me for Support Server</a><br>• <a href='/partners/cbot/redeem'>Click me for FREE country bot premium!</a>
   </p>
 </div>
+<div class='announcement_chb' id="3">
+    <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("3").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
+
+   
+   <span style='color:white;font-weight:800;'><br><img width=15px src="https://i.pinimg.com/originals/5b/bd/42/5bbd42954fe836a44d0eb42f4d9cd69d.png">Camp Half Blood is an amazing Discord Server!</span>
+  Welcome to CHB, a virtual Discord server centered around Percy Jackson and Greek Mythology.<br>• <a href='https://discord.gg/CbEKNaCtdj'>https://discord.gg/CbEKNaCtdj
+ | Join Today!</a><br></p>
+</div>
+
+
 {% if token == False %}
 <a href='/launch'><button class='launchTOP'>Launch App</button></a>
 {% endif %}

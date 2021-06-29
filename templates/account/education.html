@@ -5,6 +5,65 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #FCC101;
+}
+#current{
+  color:#FCC101;
+  background:rgba(252, 193, 1,0.3);
+}
+
+.main {
+  margin-left: 300px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="sidenav" style='font-size:15px;'>
+  <a href="/account"><i class="material-icons" style="font-size:30px;">account_circle</i> Home</a>
+  <a id = 'current' href="/account/education"><i class="material-icons" style="font-size:30px;">school</i> Education Settings</a>
+  <a href="/account/community"><i class="material-icons" style="font-size:30px;">chat</i> Chat Settings</a>
+  <a href="/account/security"><i class="material-icons" style="font-size:30px;">lock</i> Security</a>
+  <a href="/premium"><i class="material-icons" style="font-size:30px;">auto_awesome</i> Premium</a>
+  <a href="/account/appearance"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">palette</span></i> Appearance</a>
+  <a href="/account/connections"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">link</span></i> Connections</a>
+  <a href="/account/lang"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">language</span></i> Language</a>
+  <a href="/account/text"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">format_quote</span></i> Text</a>
+  <a href="/account/advanced"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">settings</span></i> Advanced</a>
+  <a href="/account/logs"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">star</span></i> Change Log</a>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</div>
+
+<div class="main">
+<style>
 input[type=text]{
   padding:5px;
   width:50%;
@@ -43,31 +102,6 @@ input[type=number]{
   height:5%;
   border-radius:10px;
   border-style:none;
-}
-input[type=submit]{
-  background:linear-gradient(to bottom right, red,orange,purple);
-  border-radius:20px;
-  border-style:none;
-  padding:20px 150px;
-}
-input[type=submit]:hover{
-  background:linear-gradient(to bottom right,yellow, green,blue);
-  border-radius:20px;
-  border-style:none;
-  padding:20px 150px;
-}
-.button{
-  background:linear-gradient(to bottom right, red,orange,purple);
-  border-radius:20px;
-  border-style:none;
-  padding:20px 150px;
-  color:black;
-}
-.button:hover{
-  background:linear-gradient(to bottom right,yellow, green,blue);
-  border-radius:20px;
-  border-style:none;
-  padding:20px 150px;
 }
 a{
     color:#34bdeb;
@@ -166,10 +200,16 @@ input .new{
 </head>
 <body>
 
-<h2>Search for your School</h2>
-
+<p style='font-weight:800;'>
+Grade: 7th</p>
+<p style='font-weight:800;'>
+School: Basis Independent Silicon Valley  (Click the button bellow to edit)</p>
+<p style='font-weight:800;'>
+Teacher: Mr. Fred (For Elementary Students)</p>
+<p style='font-weight:800;'>
+Class Name: 6N (If Applicable)</p>
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"><p>Open School List - Click Me</p></button>
+  <button onclick="myFunction()" class="dropbtn" id='mybutton'><p>Open/Close List</p></button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
     {% for i in listy %}
@@ -183,6 +223,13 @@ input .new{
 toggle between hiding and showing the dropdown content */
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
+  if($('#myDropdown:visible').length == 0){
+    document.querySelector('#mybutton').innerHTML = 'Hide List';
+  }
+  else{
+    document.querySelector('#mybutton').innerHTML = 'Open List';
+  }
+  
 }
 
 function filterFunction() {
@@ -202,8 +249,6 @@ function filterFunction() {
 }
 </script>
 
-</body>
-</html>
-
-
+</div>
+   
 {% endblock %}

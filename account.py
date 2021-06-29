@@ -23,7 +23,7 @@ def profile():
   user = file[i]
   username = user["username"]
   name = user["first"]+' '+user["last"]
-  return render_template('profile.html',name=name,username=username, mail=mail, bio=bio)
+  return render_template('account/index.html',name=name,username=username, mail=mail, bio=bio)
 @app.route('/account',methods=['POST'])
 def profile2():
   mail = request.cookies.get('login')
@@ -34,3 +34,20 @@ def profile2():
   with open('static/json/bio.json','w') as out:
     json.dump(file2,out)
   return redirect('/account')
+@app.route('/premium')
+def premium():
+  return render_template('account/premium.html')
+@app.route('/account/education')
+def school():
+  username = request.cookies.get('login')
+  if username==None:
+    return redirect('/')
+  listy=[]
+  with open('static/schools.txt') as listy:
+    listy=listy.readlines()
+  for i in range(0,len(listy)):
+    listy[i]=[listy[i][7:len(listy[i])],str(i+1)]
+  return render_template('account/education.html',listy=listy)
+@app.route('/account/connections')
+def connection():
+  return render_template('account/connection.html')

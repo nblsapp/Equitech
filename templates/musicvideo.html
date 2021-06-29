@@ -1,0 +1,77 @@
+{% block main %}
+<title>{{title}} | {{author}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+<link href={{"/static/css/style.css?version=" ~ range(1, 100000000) | random}} rel="stylesheet" id='swap'/>
+<link href="/static/css/main.css" rel="stylesheet" />
+<meta property="og:title" content=
+'{{title}}' />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://my.site.com" />
+<meta property="og:image" content={{thumbnail_url}} />
+<meta property="og:description" content='{{content}}'/>
+<meta name="theme-color" content=" #c4302b">
+<iframe width="600" height="340" src={{"https://www.youtube.com/embed/"+id}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h1>{{title}}</h1>
+<a href={{author_url}}><h2>{{author}}</h2></a><br>
+<a href={{youtube}}><button style="font-size:24px; background:#c4302b;color:white;border-style:none;border-radius:5px;margin-right:10px;">Watch on Youtube <i class="fa fa-youtube-play"></i></button></a>
+<a href={{sub}}><button style="font-size:24px; background:#c4302b;color:white;border-style:none;border-radius:5px;margin-right:10px;">Subscribe</button></a><button id="myBtn" style="font-size:24px; background:#c4302b;color:white;border-style:none;border-radius:5px;margin-right:10px;">Share</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <!-- The text field -->
+    <input style='border-radius:0px;width:250px;height:30px;border-style:none;background:white;' type="text" value='{{link}}' id="myInput" readonly>
+
+    <!-- The button used to copy the text -->
+    <button style='border-radius:0px;width:100px;height:30px;border-style:none;' onclick="myFunction()">Copy Text</button>
+    
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+function myFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Link copied to Clipboard");
+}
+</script>
+<hr style='border-top: 2px solid black;'>
+
+{% endblock %}

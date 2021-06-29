@@ -27,9 +27,6 @@ def cbot_premium():
   else:
     login = True
   return render_template('c_premium.html',login=login)
-@app.route('/premium')
-def premium():
-  return render_template('premium.html')
 @app.route('/try',methods=['POST'])
 def tryit():
   code=request.form['mycode']
@@ -183,17 +180,7 @@ def edit2():
   return render_template('edit.html',entered=True,url=url,type=type1,course=course,category=category,name=name,new=new)
 
 
-@app.route('/school')
-def school():
-  username = request.cookies.get('login')
-  if username==None:
-    return redirect('/')
-  listy=[]
-  with open('static/schools.txt') as listy:
-    listy=listy.readlines()
-  for i in range(0,len(listy)):
-    listy[i]=[listy[i][7:len(listy[i])],str(i+1)]
-  return render_template('school.html',listy=listy)
+
 
 
 @app.route('/school/<id>')
@@ -476,9 +463,7 @@ def course(course):
   return render_template('mycourse.html',course=course,name=name,image=image,teacher=teacher,notes=notes,hw=hw,cw=cw,sg=sg,quiz=quiz,ws=ws,qz=qz)
 @app.route('/music')
 def music():
-    username = request.cookies.get('login')
-    if username==None:
-      return redirect('/login')
+    
     return render_template('music.html')
 
 @app.route('/music',methods=['POST'])
@@ -494,7 +479,31 @@ def new():
           search_keyword=search_keyword[0:i]+'%20'+search_keyword[i+1:len(search_keyword)]
           break
     html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
+    
     video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+    def find_data(link, param):
+      #author_name
+      #author_url
+      #thumbnail_url
+      #title
+      import urllib.request
+      import json
+      import urllib
+      import pprint
+
+      #change to yours VideoID or change url inparams
+      VideoID = link
+
+      params = {"format": "json", "url": "https://www.youtube.com/watch?v=%s" % VideoID}
+      url = "https://www.youtube.com/oembed"
+      query_string = urllib.parse.urlencode(params)
+      url = url + "?" + query_string
+
+      with urllib.request.urlopen(url) as response:
+          response_text = response.read()
+          data = json.loads(response_text.decode())
+          pprint.pprint(data)
+          return data[param]
     
     if len(video_ids)==0:
       return render_template('musicresults.html',noresults=True)
@@ -502,99 +511,55 @@ def new():
       mylist=[]
       for i in range(0,len(video_ids)):
         if i<10:
-          mylist.append(video_ids[i])
+          #author_name
+          #author_url
+          #thumbnail_url
+          #title
+          my_dict = {"id":video_ids[i]}
+          my_dict["author_name"] = find_data(video_ids[i],"author_name")
+          my_dict["author_url"] = find_data(video_ids[i],"author_url")
+          my_dict["thumbnail_url"] = find_data(video_ids[i],"thumbnail_url")
+          my_dict["title"] = find_data(video_ids[i],"title")
+          mylist.append(my_dict)
         else:
           break
     return render_template('musicresults.html',noresults=False,mylist=mylist)
-@app.route('/spotify')
-def main_():
-    #return "Your bot is alive!"
-    return """
-    <style>
-    /* Style the search box inside the navigation bar */
-    body{
-      background-image:url('/static/bkg.png');
-    }
-    .search {
-      padding: 20px 10px 20px 10px;
-      border: none;
-      margin-top: 8px;
-      margin-right: 10px;
-      font-size: 17px;
-      position: absolute;         
-      top: 50%;        
-      transform: translate(0, -50%) }
-    .submit {
-      padding: 20px 10px 20px 10px;
-      color:white;
-      background-image:linear-gradient(to bottom right,#8B88E9,#A188EA,#B586EB,#CB86EB);
-      margin-top: 8px;
-      margin-right: 16px;
-      font-size: 17px;
-      position: absolute;         
-      top: 70%;  
-      border-radius:10px;      
-      transform: translate(0, -50%) }
-    }
-    </style>
-    <body>
-    <center>
-    <form  method="POST">
-    <input type="text" placeholder="Search.." class='search' name='search'>
-    <input type="submit" class="submit">
-    </form>
-    </center>
-    </body>"""
 
-@app.route('/spotify',methods=['POST'])
-def new_():
-    client_id = '530f3ee5ec4e4ac19c4bfdd733524928'
-    client_secret = 'eb7d066e09c84921ad3ee05723fda137'
-    text = request.form['search']
-    processed_text = text
-    import spotipy
-    from spotipy.oauth2 import SpotifyClientCredentials
-
-    birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
-    birdy_uri = 'spotify:artist:'+processed_text
-    #spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
-    spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager) #spotify object to access API
-
-    results = spotify.artist_albums(birdy_uri, album_type='album')
-    albums = results['items']
-    while results['next']:
-      results = spotify.next(results)
-      albums.extend(results['items'])
-    aaa=''
-    for album in albums:
-        aaa+=(album['name'])
-    return aaa+'<iframe src="https://open.spotify.com/embed/track/6CR8JUW0AOPTGhCrz0P6dC" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
 @app.route('/play/<id_>')
 def add(id_:str):
-  #import gdata.youtube
-  #i#mport gdata.youtube.service
+  def find_data(link, param):
+      #author_name
+      #author_url
+      #thumbnail_url
+      #title
+      import urllib.request
+      import json
+      import urllib
+      import pprint
 
-  #yt_service = gdata.youtube.service.YouTubeService()
-  m="""
-  <meta property="og:type" content="article">3
-       <meta property="og:url" content="https://apollo.nicholasxwang.repl.co/">
-       <meta property="fb:app_id" content="217926898242066">
-       <meta property="og:video" content='https://www.youtube.com/watch?v="""+id_+"""'/>
-       <meta property="og:video:width" content="640" />
-       <meta property="og:video:height" content="426" />
-       <meta property="og:video:type" content="application/mp4" />
-       <meta property="og:video" content='https://www.youtube.com/watch?v="""+id_+"""'/>
-       <meta property="og:video:type" content="video/mp4" />
-       <meta property="og:video" content='https://www.youtube.com/watch?v="""+id_+"""'/>
-       <meta property="og:video:type" content="text/html" />
-       <meta property="og:title" content="title text">
-       <meta property="og:image" content="https://static.thenounproject.com/png/2577569-200.png"/>
-       <meta property="og:description"  content="description text"/>
-       <meta property="og:site_name" content="🎵 Apollo 🎵">
-"""
-  a='<style>body{background:black;}</style><iframe width="100%" height="100%" src="https://www.youtube.com/embed/'+id_+'?autoplay=1&loop=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'+m
-  return a
+      #change to yours VideoID or change url inparams
+      VideoID = link
+
+      params = {"format": "json", "url": "https://www.youtube.com/watch?v=%s" % VideoID}
+      url = "https://www.youtube.com/oembed"
+      query_string = urllib.parse.urlencode(params)
+      url = url + "?" + query_string
+
+      with urllib.request.urlopen(url) as response:
+          response_text = response.read()
+          data = json.loads(response_text.decode())
+          pprint.pprint(data)
+          return data[param]
+  
+  youtube = f'https://www.youtube.com/watch?v={id_}'
+  link = f'https://testpreparer.gq/play/{id_}'
+  author = find_data(id_,'author_name')
+  author_url = find_data(id_,'author_url')
+  sub = author_url+'?sub_confirmation=1'
+  thumbnail_url = find_data(id_,'thumbnail_url')
+  title = find_data(id_,'title')
+  content = f'Listen to {title} by {author} on TestPreparer!'
+  return render_template('musicvideo.html',author=author,author_url=author_url,thumbnail_url=thumbnail_url,title=title,id=id_,content=content,youtube=youtube,sub=sub,link=link)
 @app.route('/calendar')
 def calendar():
   return render_template('calendar.html')

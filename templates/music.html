@@ -1,39 +1,10 @@
 {% extends "layout.html" %}
 {% block main %}
-<style>
-
-    .search {
-      width:75%;
-      height:5%;
-      border: none;
-      font-size: 17px;
-      border-radius:10px;
-}
-    .submit {
-      width:20%;
-      height:5%;
-      color:white;
-      background-image:linear-gradient(to bottom right,#8B88E9,#A188EA,#B586EB,#CB86EB);
-      font-size: 17px;      
-      border-radius:10px;
-      border-style:none;      
- }
-    </style>
     <body>
-    <center>
     <form  method="POST">
-    <input type="text" placeholder="Search.." class='search' name='search'  list="suggestions">
-    <datalist id="suggestions">
-        <option value="AJR">
-        <option value="Taylor Swift">
-        <option value="Rosseau">
-        <option value="BTS">
-        <option value="Python Tutorials">
-    </datalist>
-
-    <input type="submit" class="submit" value='Search'>
+    <input type="text" placeholder="Search.." class='search' name='search' style='height:50x;width:400px;'>
+    <input style='height:50px;'type="submit" class="submit" value='Search'>
     </form>
     <h1>When you search, results appear here!</h1>
-    </center>
     </body>
 {% endblock %}
