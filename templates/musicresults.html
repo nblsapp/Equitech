@@ -5,11 +5,26 @@
   <input type="text" placeholder="Search.." class='search' name='search' style='height:50x;width:400px;'>
   <input style='height:50px;'type="submit" class="submit" value='Search'>
   </form>
+  <h1>Spotify Tracks!</h1>
+  <h2>Youtube Videos are below the spotify videos. Click <a href='#youtube'>me</a> to skip to YouTube videos!</h2>
   {% if noresults== True %}
   <h1>No Results 😭</h1>
   {% endif %}
   {% if noresults== False %}
+  {% for i in spotify_arr %}
+  <a href={{'play/spotify/'+i["code"]}}><div style='clear:both;'>
+  <img heigth =30px src={{i["image"]}}>
+  <h1>{{i["name"]}}</h1></a>
+  <h2><a href={{i["author_url"]}}>{{i["author"]}}</a></h2></div>
+  <a href={{i["link"]}}><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<button style="font-size:24px; background:#1DB954;color:white;border-style:none;border-radius:5px;margin-right:10px;">Watch on Spotify  <i class="fa fa-spotify"></i></button></a><a href={{'play/spotify/'+i["code"]}}><div style='clear:both;'><button style="font-size:24px; background:#35BCEA;color:white;border-style:none;border-radius:5px;">Watch on TestPreparer</button></a>
+
+  <br>
+  <hr>
+  {% endfor %}
+  <h1>YouTube Videos!</h1>
   {% for i in mylist %}
+  <div id='youtube'>
   <a href={{'play/'+i["id"]}}><div style='clear:both;'>
   <img heigth = 80px src={{i["thumbnail_url"]}}>
   <h1>{{i["title"]}}</h1></a>
@@ -20,6 +35,7 @@
   <br>
   <hr>
   {% endfor %}
+  </div>
   {% endif %}
  </body>
 {% endblock %}

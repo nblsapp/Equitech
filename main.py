@@ -468,8 +468,54 @@ def music():
 
 @app.route('/music',methods=['POST'])
 def new():
+    
     text = request.form['search']
+    import requests
+
+    CLIENT_ID = '2e2775cd017f44a8a3e61d769f157732'
+    CLIENT_SECRET = '532893224edb4486ab23aa4bccbc95fc'
+    AUTH_URL = 'https://accounts.spotify.com/api/token'
+    # POST
+    auth_response = requests.post(AUTH_URL, {
+        'grant_type': 'client_credentials',
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+    })
+
+    # convert the response to JSON
+    auth_response_data = auth_response.json()
+
+    # save the access token
+    access_token = auth_response_data['access_token']
+
+  
+    artist_info = requests.get( 
+    f'https://api.spotify.com/v1/search?q={text}&type=track',
+    headers={'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/json'}).json()
+    #print(artist_info)
+    print(access_token)
+
+    spotify_arr = []
+    with open('static/json/cache.json','r') as file:
+      file = json.load(file)
+    for i in range(0,len(artist_info['tracks']['items'])):
+      if i<10:
+        mydict = {}
+        mydict['image'] = str(artist_info['tracks']['items'][i]['album']['images'][0]['url'])
+        mydict['author'] = (artist_info['tracks']['items'][i]['album']['artists'][0]['name'])
+        mydict['author_url'] = artist_info['tracks']['items'][i]['album']['artists'][0]['external_urls']["spotify"]
+        mydict['album'] = (artist_info['tracks']['items'][i]['album']['name'])
+        mydict['explicit'] = artist_info['tracks']['items'][i]['explicit']
+        mydict['name'] = (artist_info['tracks']['items'][i]['name'])
+        mydict['preview'] = (artist_info['tracks']['items'][i]['preview_url'])
+        mydict['link'] = (artist_info['tracks']['items'][i]['external_urls']['spotify'])
+        mydict['code'] = mydict['link'][31:len(mydict['link'])]
+        mydict['uri'] = (artist_info['tracks']['items'][i]['uri'])
+        spotify_arr.insert(0,mydict)
+        file.append(mydict)
     processed_text = text.upper()
+    with open('static/json/cache.json','w') as out:
+      file = json.dump(file,out,indent=4)
     import urllib.request
     import re
     search_keyword=processed_text
@@ -502,11 +548,12 @@ def new():
       with urllib.request.urlopen(url) as response:
           response_text = response.read()
           data = json.loads(response_text.decode())
-          pprint.pprint(data)
+          #pprint.pprint(data)
           return data[param]
-    
-    if len(video_ids)==0:
+
+    if len(video_ids)==0 and len(spotify_arr)==0:
       return render_template('musicresults.html',noresults=True)
+        
     else:
       mylist=[]
       for i in range(0,len(video_ids)):
@@ -523,8 +570,16 @@ def new():
           mylist.append(my_dict)
         else:
           break
-    return render_template('musicresults.html',noresults=False,mylist=mylist)
-
+  
+    return render_template('musicresults.html',noresults=False,mylist=mylist,spotify_arr=spotify_arr)
+@app.route('/play/spotify/<smth>')
+def spotify(smth):
+  extra = ''
+  with open('static/json/cache.json','r') as file:
+      file = json.load(file)
+  for i in file:
+    if i['code'] == smth:
+      return render_template('musictrack.html',i = i)
 @app.route('/play/<id_>')
 def add(id_:str):
   def find_data(link, param):
