@@ -3,7 +3,10 @@
 
 body{
   color:#FFFFFF;
-  background-color: #333436;/* i think the css is cached so its not updating*/
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('https://images.alphacoders.com/909/thumb-1920-909514.jpg');
+  background-size: auto 120%;
+  background-repeat: no-repeat;
+  background-position: left top;background-attachment: fixed;
   font-family: 'Lexend Deca', sans-serif;
 }
 input[type=password]{

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block main %}
+<style>
+  .card{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:150px;
+    height:200px;
+    margin:5px;
+    float:left;
+    background:rgba(79, 89, 89,0.5); 
+    border-radius:10px;
+    color:white;
+  }
+
+  card img{
+    text-align:center;
+  }
+  .card2{
+    border-style:none none solid none;
+    border-width:10px;
+    border-color:transparent;
+    width:100%;
+    height:60px;
+    background:rgba(79, 89, 89,0.5);
+    border-radius:10px; 
+    color:white;
+    margin-bottom:20px;
+	overflow: hidden;
+
+  }
+  .card:hover{
+    border-style:none none solid none;
+    border-color:#fcc203;
+    color:white;
+  }
+  .card img{
+    width:90px;
+  }
+
+</style>
+<div class='card2' >
+
+<h1 style="float: left;">TestPreparer Extentions</h1>
+
+<h2 style = "float: right;"><a style = "float: right;" href="/account">Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;<a style = "float: right; margin:0 20px 0 0;" href="/account/education">Join a School</a></h2>
+
+</div>
+<a href='/zoom'><div class="card">
+  <center><img src="https://i.redd.it/3mmay5358b761.png" alt="Avatar" style="width:25%"></center>
+  <div class="container" style='color:white;'>
+    <h4 style="text-align: center;color:white;" ><b>Zoom Cloud Meetings Integration</b></h4> 
+    <p style="text-align: center;color:white;"><a href='https://zoom.us'>Provider: zoom.us</a></p> 
+  </div>
+</div></a>
+<a href='/music'><div class="card">
+  
+  <center><img src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube_icon_full-color.svg?cache=f2ec7a5" alt="Avatar" style="width:25%"></center>
+  <div class="container"  style='color:white;'>
+    <h4 style="text-align: center;color:white;"><b>Youtube Videos Integration</b></h4> 
+    <p style="text-align: center;color:white;"><a href='https://youtube.com'>Provider: youtube.com</a></p> 
+  </div>
+</div></a>
+{% endblock %}

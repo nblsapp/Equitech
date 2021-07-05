@@ -16,6 +16,7 @@ mail = Mail(app)
 
 import community
 import account
+import extentions
 @app.route('/testing/<file>')
 def fil2(file):
   return render_template(file)
