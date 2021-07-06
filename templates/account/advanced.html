@@ -64,7 +64,6 @@
 <h1 style="float: left;">TestPreparer Account</h1>
 
 </div>
-
 <div class="sidenav" style='font-size:15px;'>
   <a href="/account"><i class="material-icons" style="font-size:30px;">account_circle</i> Home</a>
   <a href="/account/education"><i class="material-icons" style="font-size:30px;">school</i> Education Settings</a>
@@ -72,17 +71,23 @@
   <a href="/account/security"><i class="material-icons" style="font-size:30px;">lock</i> Security</a>
   <a href="/premium"><i class="material-icons" style="font-size:30px;">auto_awesome</i> Premium</a>
   <a href="/account/appearance"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">palette</span></i> Appearance</a>
-  <a id = 'current' href="/account/connections"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">link</span></i> Connections</a>
+  <a href="/account/connections"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">link</span></i> Connections</a>
   <a href="/account/lang"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">language</span></i> Language</a>
   <a href="/account/text"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">format_quote</span></i> Text</a>
-  <a href="/account/advanced"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">settings</span></i> Advanced</a>
+  <a id = 'current' href="/account/advanced"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">settings</span></i> Advanced</a>
   <a href="/account/logs"><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">star</span></i> Change Log</a>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </div>
 
 <div class="main">
-<a href='/oauth'><button><i class="material-icons" style="font-size:30px;"><span class="material-icons-outlined">launch</span></i> Link Country Bot Account</button>
-
+<h1>{{username}}</h1>
+<h2>{{name}}</h2>
+<h2>{{mail}}</h2>
+<h2>Bio: (Click to Edit)</h2>
+<form method='POST'>
+<textarea name='bio' style="background:transparent;border-style:solid;border-width:5px;border-color:white;color:white;font-family:'Lexend Deca', sans-serif;width:50%;height:300px;resize: none;" placeholder='You do not have a bio! Type on this to remove this message!'>{{bio}}</textarea><br>
+<input type='submit' value='Save!'>
+</form>
 </div>
    
 {% endblock %}

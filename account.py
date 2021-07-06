@@ -51,3 +51,29 @@ def school():
 @app.route('/account/connections')
 def connection():
   return render_template('account/connection.html')
+@app.route('/account/community')
+def connectionsacc():
+  return render_template('account/community.html')
+
+@app.route('/account/security')
+def security():
+  return render_template('account/security.html')
+
+@app.route('/account/appearance')
+def appearance():
+  return render_template('account/appearance.html')
+
+@app.route('/account/advanced')
+def advanced():
+  return render_template('account/advanced.html')
+@app.route('/account/lang')
+def lang():
+  return render_template('account/lang.html')
+
+
+@app.route('/account/text')
+def text():
+  return render_template('account/text.html')
+@app.route('/account/logs')
+def logs():
+  return render_template('account/logs.html')

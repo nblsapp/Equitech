@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
 {% block main %}
+<style>
+  input[type=text]{
+    background:none;
+  }
+  input[type=url]{
+    background:none;
+  }
+</style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <form method='POST'>
@@ -34,16 +42,16 @@
 </select><br></h1>
 <h2>Share it with members!</h2>
 {% for i in members %}
-  <input type="checkbox" name="members" value={{i["email"]}} checked>
+  <input type="checkbox" name="members" value={{i["email"]}}>
   <label for="members"> {{i["username"]+' | '+i["email"]}}</label><br>
 {% endfor %}
 <h1>Select Type</h1>
 <input type="radio" name="share" value="View">
-<label for="share"> View <img src='static/assets/visibility_black_24dp.svg' width=20px></label><br>
+<label for="share"> View <img src='/static/assets/visibility_black_24dp.svg' style='filter: invert(1);' width=20px></label><br>
 <input type="radio" name="share" value="Suggest">
-<label for="share"> Suggest <img src='static/assets/question_answer_black_24dp.svg' width=20px></label><br>
+<label for="share"> Suggest <img src='/static/assets/question_answer_black_24dp.svg' style='filter: invert(1);' width=20px></label><br>
 <input type="radio" name="share" value="Edit">
-<label for="vehicle2"> Edit <img src='static/assets/edit_black_24dp.svg' width=20px></label><br>
+<label for="vehicle2"> Edit <img src='/static/assets/edit_black_24dp.svg' style='filter: invert(1);' width=20px></label><br>
 <input type='submit' value='Share!'>
 </form>
 

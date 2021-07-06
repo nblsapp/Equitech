@@ -10,7 +10,7 @@
     height:400px;
     margin:5px;
     float:left;
-    background:#4f5959; 
+    background:rgba(79, 89, 89,0.5); 
     border-radius:10px;
     color:white;
   }
@@ -29,7 +29,7 @@
 <h1><a href='/shared/new'>Share a New File</a></h1><br>
 {% for i in new %}
 <a href={{'/shared/file/'+i["link"]}} target='_blank'><div class="file">
-  <img src={{'/static/attachments/icons/'+i["type"]}} alt="Avatar" style="width:25%">
+  <img src={{'/static/assets/icons/'+i["type"]}} alt="Avatar" style="width:25%">
   <div class="container">
     <h1>{{i["name"]}}</h1>
     <p><u>Name: </u>{{i["name2"]}}<br><u>Category: </u>{{i["category"]}}<br>
