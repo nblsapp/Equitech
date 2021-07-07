@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request,make_response,redirect,flash, url_for
 import requests
+import hashlib
 from flask_mail import Mail, Message
 app = Flask(__name__)
 mail= Mail(app)
 import json
 import os
 import random
+from werkzeug.security import generate_password_hash, check_password_hash
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'testpreparergq@gmail.com'
@@ -22,14 +24,30 @@ def fil2(file):
   return render_template(file)
 @app.route('/partners/cbot/redeem')
 def cbot_premium():
+  login = True
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
-    login=False
-  else:
-    login = True
+    login = False
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    psw = hashlib.md5(bytes(psw, 'utf-8'))
+    psw=(psw.hexdigest())
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        print("gothere :(")
+        login = False
+      else:
+        print("gothere")
+        found = True
+  if found == False:
+    login = False
   return render_template('c_premium.html',login=login)
 @app.route('/try',methods=['POST'])
 def tryit():
+
   code=request.form['mycode']
   import io
   import contextlib
@@ -50,21 +68,111 @@ def tryit():
   return "<style>body{background:black;color:white;font-family:'Arial';}h1{background:#363636;border-radius:10px;padding:5px;width:150px;}</style><h1>Console</h1>"""+result
 @app.route('/python')
 def python():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('python.html')
 @app.errorhandler(404)
 def page_not_found(e):
-	return render_template('404.html'), 404
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
+  return render_template('404.html'), 404
 @app.errorhandler(500)
 def page_not_found1(e):
-	return render_template('500.html'), 500
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
+  return render_template('500.html'), 500
 @app.errorhandler(400)
 def page_not_found2(e):
-	return render_template('400.html'), 400
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
+  return render_template('400.html'), 400
 @app.route('/question')
 def question():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('question.html')
 @app.route('/question',methods=['POST'])
 def question2():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   query = request.form['text']
   from pprint import pprint
   import requests
@@ -92,16 +200,76 @@ def question2():
 
 @app.route('/cookies')
 def cookies():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('cookies.html')
 @app.route('/pp')
 def pp():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('pp.html')
 @app.route('/about')
 def about():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('about.html')
 
 @app.route('/aops')
 def aops():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('aops.html')
   
   
@@ -111,6 +279,21 @@ def disc():
   return redirect('https://discord.gg/Ac35ApunJY')
 @app.route('/disclaimer')
 def disclaimer():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('disclaimer.html')
 
 
@@ -124,19 +307,62 @@ def logout():
 
 @app.route('/tos')
 def tos():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('tos.html')
 
 
 @app.route('/static/json/<file>')
 def protect(file):
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('404.html')
 
 
 @app.route('/edit')
 def edit():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
     return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
+  
   from os import walk
 
   with open('static/json/courses.json') as file:
@@ -151,7 +377,19 @@ def edit():
 @app.route('/edit',methods=['POST'])
 def edit2():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
   from os import walk
 
@@ -187,8 +425,20 @@ def edit2():
 @app.route('/school/<id>')
 def school1(id):
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/')
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   listy=[]
   with open('static/schools.txt') as listy:
     listy=listy.readlines()
@@ -203,8 +453,20 @@ def school1(id):
 @app.route('/school/<id>',methods=['POST'])
 def school2(id):
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/')
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   listy=[]
   with open('static/schools.txt') as listy:
     listy=listy.readlines()
@@ -223,28 +485,48 @@ def school2(id):
 
 @app.route('/')
 def main():
-  #if 'testpreparer' not in request.url_root:
-    #return redirect('https://testpreparer.gq')
   username = request.cookies.get('login')
+  login = True
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
-    not_logged_in=True
-  else:
-    not_logged_in=False
-  return render_template('home.html',token=not_logged_in)
+    login = False
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        login = False
+      else:
+        found = True
+  if found == False:
+    login = False
+  return render_template('home.html',token= not login)
 
 
 @app.route('/login')
 def login():
-  
   username = request.cookies.get('login')
-  if username!=None:
-    return redirect('/')
-  return render_template('login.html')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return render_template('login.html')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/')
+      else:
+        found = True
+  if found == False:
+    return render_template('login.html')
+  return redirect('/')
 
 
 @app.route('/login',methods=['POST'])
-def main1():
-  import hashlib
+def main1():  
   name=request.form['email']
   
   psw=request.form['password']
@@ -264,7 +546,7 @@ def main1():
     if var[value]["password"]==psw:
       resp = make_response(redirect('/'))
       resp.set_cookie('login', name)
-      resp.set_cookie('psw', psw)
+      resp.set_cookie('psw', str(psw))
       return resp 
     else:
       return render_template('login.html',name=name,psw=psw,error='Wrong Password!!!')
@@ -277,9 +559,21 @@ def signup():
   if token == 'cbot':
     return render_template('cbotpremiumsignin.html')
   username = request.cookies.get('login')
-  if username!=None:
-    return redirect('/')
-  return render_template('signup.html')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return render_template('signup.html')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return render_template('signup.html')
+      else:
+        found = True
+  if found == False:
+    return render_template('signup.html')
+  return redirect('/')
 
 
 @app.route('/signup',methods=['POST'])
@@ -323,11 +617,20 @@ def signup1():
 @app.route('/zoom')
 def zoom():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
     return redirect('/login')
-  username = request.cookies.get('login')
-  if username==None:
-    return render_template('login.html')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('zoom.html')
 @app.route('/zoom',methods=['POST'])
 def join():
@@ -336,14 +639,67 @@ def join():
   return redirect(f'zoommtg://zoom.us/join?confno={id}&pwd={pwd}')
 @app.route('/launch')
 def launch():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('app.html')
 @app.route('/app')
 def mainlol():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('dashboard.html')
 @app.route('/education')
 def courses():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
 
   with open('static/json/courses.json') as file:
@@ -362,11 +718,38 @@ def courses():
 @app.route('/add-course')
 def addcourse():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
   return render_template('add.html')
 @app.route('/add-course',methods=['POST'])
 def addcourse1():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   username = request.cookies.get('login')
   name=request.form['name']
   image=request.form['image']
@@ -380,7 +763,19 @@ def addcourse1():
 @app.route('/addquiz')
 def addquiz():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
   with open('static/json/courses.json') as file:
     f=json.load(file)
@@ -395,6 +790,21 @@ def addquiz():
   return render_template('addquiz.html',new=ans)
 @app.route('/addquiz',methods=['POST'])
 def addquizmethod():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   name=request.form['name']
   datey=request.form['date']
   typey=request.form['type']
@@ -408,9 +818,20 @@ def addquizmethod():
 @app.route('/course/<course>')
 def course(course):
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
     return redirect('/login')
-  username = request.cookies.get('login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   from os import walk
 
   with open('static/json/courses.json') as file:
@@ -464,7 +885,21 @@ def course(course):
   return render_template('mycourse.html',course=course,name=name,image=image,teacher=teacher,notes=notes,hw=hw,cw=cw,sg=sg,quiz=quiz,ws=ws,qz=qz)
 @app.route('/music')
 def music():
-    
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
     return render_template('music.html')
 
 @app.route('/music',methods=['POST'])
@@ -618,124 +1053,41 @@ def add(id_:str):
   return render_template('musicvideo.html',author=author,author_url=author_url,thumbnail_url=thumbnail_url,title=title,id=id_,content=content,youtube=youtube,sub=sub,link=link)
 @app.route('/calendar')
 def calendar():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('calendar.html')
-@app.route('/search')
-def search():
-    #return "Your bot is alive!"
-    return """
-    <style>
-    /* Style the search box inside the navigation bar */
-    body{
-      background-color:#2f3438;
-      color:white;
-    }
-    .search {
-      width:75%;
-      height:5%;
-      border: none;
-      font-size: 17px;
-      border-radius:10px;
-}
-    .submit {
-      width:20%;
-      height:5%;
-      color:white;
-      background-image:linear-gradient(to bottom right,#8B88E9,#A188EA,#B586EB,#CB86EB);
-      font-size: 17px;      
-      border-radius:10px;
-      border-style:none;      
- }
-    </style>
-    <body>
-    <center>
-    <form  method="POST">
-    <input type="text" placeholder="Search.." class='search' name='search'>
-    <input type="submit" class="submit">
-    </form>
-    <h1>When you search, results appear here!</h1>
-    </center>
-    </body>"""
 
-@app.route('/search',methods=['POST'])
-def search2():
-    text = request.form['search']
-    processed_text = text.upper()
-    import urllib.request
-    import re
-    search_keyword=processed_text
-    while ' ' in search_keyword:
-      for i in range(0,len(search_keyword)):
-        if ' '==search_keyword[i]:
-          search_keyword=search_keyword[0:i]+'%20'+search_keyword[i+1:len(search_keyword)]
-          break
-    html = urllib.request.urlopen("https://www.google.com/search?q=" + search_keyword+"&safe=strict")
-    video_ids = re.findall("/", html.read().decode())
-    return str(html)
-    """
-    print("https://www.youtube.com/watch?v=" + video_ids[0])
-    return ('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+video_ids[0]+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
-    """
-    string="""<script>
-    if (document.addEventListener) {
-  document.addEventListener('contextmenu', function(e) {
-    alert("You've tried to open context menu"); //here you draw your own menu
-    e.preventDefault();
-  }, false);
-} else {
-  document.attachEvent('oncontextmenu', function() {
-    alert("You've tried to open context menu");
-    window.event.returnValue = false;
-  });
-}
-</script>
-    <style>
-    /* Style the search box inside the navigation bar */
-    body{
-      background-color:#2f3438;
-      color:white;
-    }
-    .search {
-      width:75%;
-      height:5%;
-      border: none;
-      font-size: 17px;
-      border-radius:10px;
-}
-    .submit {
-      width:20%;
-      height:5%;
-      color:white;
-      background-image:linear-gradient(to bottom right,#8B88E9,#A188EA,#B586EB,#CB86EB);
-      font-size: 17px;      
-      border-radius:10px;
-      border-style:none;      
- }
-    </style>
-    <body>
-    <center>
-    <form  method="POST">
-    <input type="text" placeholder="Search.." class='search' name='search'>
-    <input type="submit" class="submit">
-    </form>
-    """
-    if len(video_ids)==0:
-      return 'No Results :('
-    else:
-      for i in range(0,len(video_ids)):
-        if i<10:
-          string+=('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+video_ids[i]+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br>')
-        else:
-          break
-    return string
     
 
-@app.route('/share')
-def shareerror():
-  return redirect('/shared')
 @app.route('/shared')
 def share():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
   with open('static/json/share.json','r') as share:
     share=json.load(share)
@@ -758,13 +1110,40 @@ def share():
 @app.route('/shared/new')
 def shared():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
   with open('static/json/members.json','r') as members:
     members=json.load(members)
   return render_template('share.html',members=members)
 @app.route('/shared/file/<file>')
 def openfile(file):
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   with open("static/json/share.json", "r") as read_file:
     data = json.load(read_file)
   for i in range(0,len(data)):
@@ -774,6 +1153,21 @@ def openfile(file):
     
 @app.route('/shared/new',methods=['POST'])
 def share1():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if str(i["password"]) != str(psw):
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   members=request.form.getlist('members')
   share=request.form['share']
   category=request.form['category']

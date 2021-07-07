@@ -7,9 +7,6 @@
   data-website-uuid="eb1de628-c463-4c41-a09c-999f19419c9b"
   ></script>
 
-<a href="https://app.termly.io/notify/f1f22363-f640-47d2-9b0d-ecb865075b85" style='color:#333436'>
-  Do not sell my info
-</a>
 <style>
   .launch{
     background:#fcc203;
@@ -59,7 +56,7 @@
     position: absolute;
     right: 0px;
     left:60%;
-    top: 30px;
+    top: 40px;
     border-style:none none solid none;
     border-color:#a83246;
     border-width:3px;
@@ -72,7 +69,7 @@
 
    
    <span style='color:#a83246;font-weight:800;'><br>❗Country Bot is Now Partnered with TestPreparer!</span>
-  Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country...&nbsp;&nbsp;&nbsp;&nbsp;<button id="change">(Read More)</buttom>
+  Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country...&nbsp;&nbsp;&nbsp;&nbsp;<button style='background:#4287f5;border-radius:5px;padding:10px;border-style:none;' id="change">(Read More)</buttom>
 </div>
 
 <div class='announcement' id="2" style="display:none;">
@@ -109,6 +106,12 @@ $('#change').on('click',function(){
         $('#1').show().siblings('div').hide();
     }
 });
+setTimeout(function() {
+    $('#1').fadeOut(10000);
+}, 1000); // <-- time in milliseconds
+setTimeout2(function() {
+    $('#2').fadeOut(10000);
+}, 1000); // <-- time in milliseconds
 </script>
 
 {% endblock %}

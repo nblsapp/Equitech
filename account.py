@@ -4,7 +4,20 @@ import json
 @app.route('/account')
 def profile():
   mail = request.cookies.get('login')
-  if mail==None:
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
     return redirect('/login')
   
   with open('static/json/members.json') as file:
@@ -36,12 +49,39 @@ def profile2():
   return redirect('/account')
 @app.route('/premium')
 def premium():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/premium.html')
 @app.route('/account/education')
 def school():
   username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/')
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   listy=[]
   with open('static/schools.txt') as listy:
     listy=listy.readlines()
@@ -50,30 +90,150 @@ def school():
   return render_template('account/education.html',listy=listy)
 @app.route('/account/connections')
 def connection():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/connection.html')
 @app.route('/account/community')
 def connectionsacc():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/community.html')
 
 @app.route('/account/security')
 def security():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/security.html')
 
 @app.route('/account/appearance')
 def appearance():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/appearance.html')
 
 @app.route('/account/advanced')
 def advanced():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/advanced.html')
 @app.route('/account/lang')
 def lang():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/lang.html')
 
 
 @app.route('/account/text')
 def text():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/text.html')
 @app.route('/account/logs')
 def logs():
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   return render_template('account/logs.html')

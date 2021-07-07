@@ -5,6 +5,22 @@ import random
 
 @app.route('/community')
 def servers():
+  mail = request.cookies.get('login')
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect('/login')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect('/login')
+      else:
+        found = True
+  if found == False:
+    return redirect('/login')
   import re
   def deEmojify(text):
     regrex_pattern = re.compile(pattern = "["
