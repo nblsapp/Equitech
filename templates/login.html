@@ -8,7 +8,7 @@
 <form autocomplete="off" method='POST'>
   <input style='width:280px;' type='email' placeholder='Email' name='email' value={{name}}><br>
   <input style='width:280px;' type='password' placeholder='Password' name='password' value={{psw}}><br>
-  <h4><input type='submit' value='Log In!'>&nbsp;&nbsp; <a href='/signup'>Sign Up!</a>&nbsp;&nbsp;<a href='/recovery'>Forgot Password!</a></h4>
+  <h4><input type='submit' value='Log In!'>&nbsp;&nbsp; <a href={{signup}}>Sign Up!</a>&nbsp;&nbsp;<a href='/recovery'>Forgot Password!</a></h4>
 </form>
 </center>
 {% endblock %}

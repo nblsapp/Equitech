@@ -138,5 +138,26 @@
         "last": "N/A",
         "email": "9abrahamwang@gmail.com",
         "password": "c1ca137bc6c5d088c5aa0670a7db0229"
+    },
+    {
+        "username": "a",
+        "first": "a",
+        "last": "a",
+        "email": "a@a.com",
+        "password": "0cc175b9c0f1b6a831c399e269772661"
+    },
+    {
+        "username": "b",
+        "first": "b",
+        "last": "b",
+        "email": "b@b.b",
+        "password": "92eb5ffee6ae2fec3ad71c777531578f"
+    },
+    {
+        "username": "d",
+        "first": "d",
+        "last": "d",
+        "email": "d@d.d",
+        "password": "8277e0910d750195b448797616e091ad"
     }
 ]

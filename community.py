@@ -9,18 +9,18 @@ def servers():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect(f'/login?path={request.path.replace("/","%")}')
+    return redirect(f'/login?path={request.path.replace("/","%2F")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if i["password"] != psw:
-        return redirect(f'/login?path={request.path.replace("/","%")}')
+        return redirect(f'/login?path={request.path.replace("/","%2F")}')
       else:
         found = True
   if found == False:
-    return redirect(f'/login?path={request.path.replace("/","%")}')
+    return redirect(f'/login?path={request.path.replace("/","%2F")}')
   import re
   def deEmojify(text):
     regrex_pattern = re.compile(pattern = "["
@@ -50,7 +50,6 @@ def servers():
   return render_template('community/index.html',status=status,servers=servers2)
 @app.route('/community',methods=['POST'])
 def servers1():
-  found = False
   name=request.form['name']
   digits=['a','b','c','d','e','f','g','h','i','j','k','l','m','n' 'o','p','q','r','s','t','u','v','w','x','y','z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N','O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X','Y', 'Z','1','2','3','4','5','6','7','8','9','0']
   link=''
@@ -71,33 +70,25 @@ def servers1():
     file=json.dump(file,out,indent=4)
   return redirect(f'https://testpreparer.gq/invite/{link}')
 
-
+  
 
 @app.route('/invite/<code>')
-def invite(code):
-  with open('static/json/servers.json','r') as file:
-    file=json.load(file)
-  
-  
-  found=False
-  for i in range(0,len(file)):
-    if file[i][1][31:len(file[i][1])]==code:
-      found=True
-      name=file[i][0]
-      join = file[i][-1]
-    
-  if found==False:
-    return render_template('join.html',vaild=False)
-  username = request.cookies.get('login')
-  
-  
-  return render_template('join.html',valid=True,name=name,username=username,join=join)
-
-
-@app.route('/invite/<code>',methods=['POST'])
 def invite2(code):
-  username=request.cookies.get('login')
-  
+  username = request.cookies.get('login')
+  psw = request.cookies.get('psw')
+  if username==None:
+    return redirect(f'/login?path={request.path.replace("/","%2F")}')
+  with open('static/json/members.json') as a:
+    a = json.load(a)
+  found = False
+  for i in a:
+    if i["email"] == username:
+      if i["password"] != psw:
+        return redirect(f'/login?path={request.path.replace("/","%2F")}')
+      else:
+        found = True
+  if found == False:
+    return redirect(f'/login?path={request.path.replace("/","%2F")}')
   with open('static/json/servers.json','r') as file:
     file=json.load(file)
   found=False
@@ -110,9 +101,6 @@ def invite2(code):
       if len(messages) == 0:
         messages.append(['System','No Current Messages'])
   
-  if request.cookies.get('login') == None:
-    return render_template('claim.html',server=server,username=request.form['name'],check=str('/invite/')+str(code))
-  
   with open('static/json/servers.json','w') as out:
     json.dump(file,out,indent=4)
   with open('static/json/servermembers.json','r') as sm:
@@ -124,7 +112,7 @@ def invite2(code):
     sm[username] = [code]
   with open('static/json/servermembers.json','w') as out:
     json.dump(sm,out,indent=4)
-  return render_template('inweb.html',server=server,name=request.form['name'],username=request.cookies.get('login'),stuff='height:'+str(30*40)+';',messages=messages,link=code)
+  return render_template('inweb.html',server=server,username=request.cookies.get('login'),stuff='height:'+str(30*40)+';',messages=messages,link=code)
 
 @app.route('/submit/<code>',methods=['POST'])
 def submit2(code):
