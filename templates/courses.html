@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block main %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
   .card{
     border-style:none none solid none;
@@ -84,8 +85,7 @@
 </div></a>
 {% endfor %}
 <a href='/add-course'><div class="card">
-  <center><img src="https://images.emojiterra.com/google/android-pie/512px/2795.png" alt="Avatar" style="width:25%">
-  <div class="container">
+  <center><i style='font-size:6em;color:#dbc03b;' class="material-icons">add</i>
     <h4><b>Add a Course</b></h4> 
     <p>to your dashboard!</p> 
  </div></center>
@@ -95,7 +95,7 @@
 
 <h1 style='clear: both;'>3rd Party Education Tools</h1>
 <a href='/shared'><div class="card">
-  <center><img src="https://icons-for-free.com/iconfiles/png/512/share+google-131965017636708830.png" alt="Avatar" style="width:25%">
+  <center><i style='font-size:6em;color:#63db3b;' class="material-icons">share</i>
   <div class="container">
     <h4><b>Shared Drives</b></h4> 
     <p>Share Study Guides!!!</p> 
@@ -123,7 +123,7 @@
   </div>
 </div></a>
 <a href='/calendar'><div class="card">
-  <center><img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" alt="Avatar" style="width:25%"></center>
+  <center><i style='font-size:6em;color:red;' class="material-icons">calendar_today</i></center>
   <div class="container" style='color:white;'>
     <h4 style="text-align: center;color:white;" ><b>Calendar <span style='font-size:0.5em;background:red;color:white;border-radius:5px;width:25px'>beta</span></b></h4> 
   </div>
@@ -135,7 +135,7 @@
   </div>
 </div></a>
 <a href='/music'><div class="card">
-  <center><img src="https://i.pinimg.com/originals/e9/65/f2/e965f231b1307fc29d60bf4dc8de0190.png" alt="Avatar" style="width:25%;filter: invert(1);"></center>
+  <center><i style='font-size:6em;color:white;' class="material-icons">music_note</i></center>
   <div class="container" style='color:white;'>
     <h4 style="text-align: center;color:white;" ><b>Music Studio <span style='font-size:0.5em;background:red;color:white;border-radius:5px;width:25px'>beta</span></b></h4> 
   </div>

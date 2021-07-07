@@ -140,24 +140,24 @@
         "password": "c1ca137bc6c5d088c5aa0670a7db0229"
     },
     {
+        "username": "applepro223",
+        "first": "Adi",
+        "last": "Bhagwat",
+        "email": "adityabhagwat2008@gmail.com",
+        "password": "be08d494c90f02ab1006a413bebe328f"
+    },
+    {
+        "username": "wef",
+        "first": "ewf",
+        "last": "wef",
+        "email": "fewfe@wef",
+        "password": "847dc0f7420f7d9b30abccf8729bd028"
+    },
+    {
         "username": "a",
         "first": "a",
         "last": "a",
-        "email": "a@a.com",
+        "email": "a@a",
         "password": "0cc175b9c0f1b6a831c399e269772661"
-    },
-    {
-        "username": "b",
-        "first": "b",
-        "last": "b",
-        "email": "b@b.b",
-        "password": "92eb5ffee6ae2fec3ad71c777531578f"
-    },
-    {
-        "username": "d",
-        "first": "d",
-        "last": "d",
-        "email": "d@d.d",
-        "password": "8277e0910d750195b448797616e091ad"
     }
 ]

@@ -19,11 +19,13 @@ mail = Mail(app)
 import community
 import account
 import extentions
+
 @app.route('/testing/<file>')
 def fil2(file):
   return render_template(file)
 @app.route('/partners/cbot/redeem')
 def cbot_premium():
+  import json
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   login = True
@@ -41,7 +43,19 @@ def cbot_premium():
   if found == False:
     login = False
   
-  return render_template('c_premium.html',login=login)
+  
+  from urllib.request import urlopen
+  import json
+  url = "https://cbotdiscord.npcool.repl.co/static/main.json"
+  response = urlopen(url)
+  data_json = json.loads(response.read())
+    
+  try:
+    data_json[username]
+  except:
+    return render_template('c_premium.html',login=login,username=username)
+  return 'You have claimed premium!'
+  
 @app.route('/try',methods=['POST'])
 def tryit():
 
@@ -506,6 +520,9 @@ def main():
 def login():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
+  if 'login' in request.args.get('path'):
+    return redirect('/login?path=/')
+  
   signup = '/signup?path='+request.args.get('path')
   if username==None:
     return render_template('login.html',signup=signup)

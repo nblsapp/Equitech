@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block main %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
   img{
     margin:4px;
@@ -28,14 +29,18 @@
   font-weight:400;
 }
 </style>
-<img src={{image}} width=10%>
-<center>
+<img  style='float:left;' src={{image}} height=10%>
+<div style='float:left;'>
 <h1 class='myDIV'>{{name}}</h1>
 <i><h2 style='color:#7c71f5;'>Teacher: {{teacher}}</h2></i>
-<div style='background:#454952;border-radius:25px;color:black;width:50%;height:100px;'>
-  <h3><a href='/delete'>Delete This Course</a><br>
-  <a href='/edit'>Edit This Course</a><br>
-  <a href='/editcourse'>Edit Course Content</a><br></h3>
+</div>
+<center>
+
+<div style='clear:both;background:rgba(69, 73, 82,0.3);border-radius:25px;color:black;width:50%;height:100px;'>
+  
+  <h3><a href='/delete'><i class="material-icons">delete</i>Delete This Course</a><br>
+  <a href='/edit'><i class="material-icons">edit</i>Edit This Course</a><br>
+  <a href='/editcourse'><i class="material-icons">add</i>Add Course Content</a><br></h3>
 </div>
 </center>
 <h1>Zoom Links</h1>
