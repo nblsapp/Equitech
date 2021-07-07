@@ -71,108 +71,108 @@ def python():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('python.html')
 @app.errorhandler(404)
 def page_not_found(e):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('404.html'), 404
 @app.errorhandler(500)
 def page_not_found1(e):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('500.html'), 500
 @app.errorhandler(400)
 def page_not_found2(e):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('400.html'), 400
 @app.route('/question')
 def question():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('question.html')
 @app.route('/question',methods=['POST'])
 def question2():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   query = request.form['text']
   from pprint import pprint
   import requests
@@ -203,54 +203,54 @@ def cookies():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('cookies.html')
 @app.route('/pp')
 def pp():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('pp.html')
 @app.route('/about')
 def about():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('about.html')
 
 @app.route('/aops')
@@ -258,18 +258,18 @@ def aops():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('aops.html')
   
   
@@ -282,18 +282,18 @@ def disclaimer():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('disclaimer.html')
 
 
@@ -310,18 +310,18 @@ def tos():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('tos.html')
 
 
@@ -330,18 +330,18 @@ def protect(file):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('404.html')
 
 
@@ -350,18 +350,18 @@ def edit():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   
   from os import walk
 
@@ -379,18 +379,18 @@ def edit2():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   from os import walk
 
   with open('static/json/courses.json') as file:
@@ -427,18 +427,18 @@ def school1(id):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   listy=[]
   with open('static/schools.txt') as listy:
     listy=listy.readlines()
@@ -455,18 +455,18 @@ def school2(id):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   listy=[]
   with open('static/schools.txt') as listy:
     listy=listy.readlines()
@@ -544,7 +544,7 @@ def main1():
     return render_template('login.html',name=name,psw=psw,error='Please create your account using the Sign Up button below!')
   else:
     if var[value]["password"]==psw:
-      resp = make_response(redirect('/'))
+      resp = make_response(redirect('https://testpreparer.gq'+request.args.get('path').replace('%','/')))
       resp.set_cookie('login', name)
       resp.set_cookie('psw', str(psw))
       return resp 
@@ -607,7 +607,7 @@ def signup1():
     with open('static/json/members.json','w') as file:
       var=json.dump(var, file,indent=4)
     if check=='no':
-      return redirect('/login')
+      return redirect(f'/login?path={request.path.replace("/","%")}')
     if check == 'cbot':
       check = 'https://testpreparer.gq/partners/cbot/redeem'
     resp = make_response(redirect(check))
@@ -619,18 +619,18 @@ def zoom():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('zoom.html')
 @app.route('/zoom',methods=['POST'])
 def join():
@@ -642,65 +642,65 @@ def launch():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('app.html')
 @app.route('/app')
 def mainlol():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('dashboard.html')
 @app.route('/education')
 def courses():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
 
   with open('static/json/courses.json') as file:
     f=json.load(file)
@@ -720,36 +720,36 @@ def addcourse():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('add.html')
 @app.route('/add-course',methods=['POST'])
 def addcourse1():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   username = request.cookies.get('login')
   name=request.form['name']
   image=request.form['image']
@@ -765,18 +765,18 @@ def addquiz():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/courses.json') as file:
     f=json.load(file)
   new=[]
@@ -793,18 +793,18 @@ def addquizmethod():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   name=request.form['name']
   datey=request.form['date']
   typey=request.form['type']
@@ -820,18 +820,18 @@ def course(course):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   from os import walk
 
   with open('static/json/courses.json') as file:
@@ -888,19 +888,19 @@ def music():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
-    return render_template('music.html')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
+  return render_template('music.html')
 
 @app.route('/music',methods=['POST'])
 def new():
@@ -1056,18 +1056,18 @@ def calendar():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   return render_template('calendar.html')
 
     
@@ -1077,18 +1077,18 @@ def share():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/share.json','r') as share:
     share=json.load(share)
   new=[]
@@ -1112,18 +1112,18 @@ def shared():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json','r') as members:
     members=json.load(members)
   return render_template('share.html',members=members)
@@ -1132,18 +1132,18 @@ def openfile(file):
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open("static/json/share.json", "r") as read_file:
     data = json.load(read_file)
   for i in range(0,len(data)):
@@ -1156,18 +1156,18 @@ def share1():
   username = request.cookies.get('login')
   psw = request.cookies.get('psw')
   if username==None:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   with open('static/json/members.json') as a:
     a = json.load(a)
   found = False
   for i in a:
     if i["email"] == username:
       if str(i["password"]) != str(psw):
-        return redirect('/login')
+        return redirect(f'/login?path={request.path.replace("/","%")}')
       else:
         found = True
   if found == False:
-    return redirect('/login')
+    return redirect(f'/login?path={request.path.replace("/","%")}')
   members=request.form.getlist('members')
   share=request.form['share']
   category=request.form['category']
