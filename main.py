@@ -1113,11 +1113,12 @@ def new():
                 search_keyword = search_keyword[0:i] + '%20' + search_keyword[
                     i + 1:len(search_keyword)]
                 break
+    
     html = urllib.request.urlopen(
         "https://www.youtube.com/results?search_query=" + search_keyword)
 
     video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
-
+    
     def find_data(link, param):
         #author_name
         #author_url
@@ -1133,7 +1134,7 @@ def new():
 
         params = {
             "format": "json",
-            "url": "https://www.youtube.com/watch?v=%" % VideoID
+            "url": "https://www.youtube.com/watch?v={}".format(VideoID)
         }
         url = "https://www.youtube.com/oembed"
         query_string = urllib.parse.urlencode(params)
@@ -1156,13 +1157,17 @@ def new():
                 #author_url
                 #thumbnail_url
                 #title
-                my_dict = {"id": video_ids[i]}
-                my_dict["author_name"] = find_data(video_ids[i], "author_name")
-                my_dict["author_url"] = find_data(video_ids[i], "author_url")
-                my_dict["thumbnail_url"] = find_data(video_ids[i],
-                                                     "thumbnail_url")
-                my_dict["title"] = find_data(video_ids[i], "title")
-                mylist.append(my_dict)
+
+                try:
+                  my_dict = {"id": video_ids[i]}
+                  my_dict["author_name"] = find_data(video_ids[i], "author_name")
+                  my_dict["author_url"] = find_data(video_ids[i], "author_url")
+                  my_dict["thumbnail_url"] = find_data(video_ids[i],"thumbnail_url")
+                  my_dict["title"] = find_data(video_ids[i], "title")
+                  mylist.append(my_dict)
+                except:
+                  continue
+              
             else:
                 break
 
@@ -1183,52 +1188,38 @@ def spotify(smth):
 
 
 @app.route('/play/<id_>')
-def add(id_: str):
-    def find_data(link, param):
-        #author_name
-        #author_url
-        #thumbnail_url
-        #title
-        import urllib.request
-        import json
-        import urllib
-        import pprint
+def add(id_:str):
+  def find_data(link, param):
+      #author_name
+      #author_url
+      #thumbnail_url
+      #title
+      import urllib.request
+      import json
+      import urllib
+      import pprint
+      #change to yours VideoID or change url inparams
+      VideoID = link
+      params = {"format": "json", "url": "https://www.youtube.com/watch?v=%s" % VideoID}
+      url = "https://www.youtube.com/oembed"
+      query_string = urllib.parse.urlencode(params)
+      url = url + "?" + query_string
+      with urllib.request.urlopen(url) as response:
+          response_text = response.read()
+          data = json.loads(response_text.decode())
+          pprint.pprint(data)
+          return data[param]
+  
+  youtube = f'https://www.youtube.com/watch?v={id_}'
+  link = f'https://testpreparer.gq/play/{id_}'
+  author = find_data(id_,'author_name')
+  author_url = find_data(id_,'author_url')
+  sub = author_url+'?sub_confirmation=1'
+  thumbnail_url = find_data(id_,'thumbnail_url')
+  title = find_data(id_,'title')
+  content = f'Listen to {title} by {author} on TestPreparer!'
+  return render_template('musicvideo.html',author=author,author_url=author_url,thumbnail_url=thumbnail_url,title=title,id=id_,content=content,youtube=youtube,sub=sub,link=link)
 
-        #change to yours VideoID or change url inparams
-        VideoID = link
-
-        params = {
-            "format": "json",
-            "url": "https://www.youtube.com/watch?v=%s" % VideoID
-        }
-        url = "https://www.youtube.com/oembed"
-        query_string = urllib.parse.urlencode(params)
-        url = url + "?" + query_string
-
-        with urllib.request.urlopen(url) as response:
-            response_text = response.read()
-            data = json.loads(response_text.decode())
-            pprint.pprint(data)
-            return data[param]
-
-    youtube = f'https://www.youtube.com/watch?v={id_}'
-    link = f'https://testpreparer.gq/play/{id_}'
-    author = find_data(id_, 'author_name')
-    author_url = find_data(id_, 'author_url')
-    sub = author_url + '?sub_confirmation=1'
-    thumbnail_url = find_data(id_, 'thumbnail_url')
-    title = find_data(id_, 'title')
-    content = f'Listen to {title} by {author} on TestPreparer!'
-    return render_template('musicvideo.html',
-                           author=author,
-                           author_url=author_url,
-                           thumbnail_url=thumbnail_url,
-                           title=title,
-                           id=id_,
-                           content=content,
-                           youtube=youtube,
-                           sub=sub,
-                           link=link)
 
 
 @app.route('/calendar')

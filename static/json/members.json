@@ -166,5 +166,19 @@
         "last": "Gisselbrecht",
         "email": "max.gisselbrecht@gmail.com",
         "password": "b29217c82741831ea58842bbc6fd69fc"
+    },
+    {
+        "username": "kamkam",
+        "first": "Kam",
+        "last": " ",
+        "email": "kamrannoei3@gmail.com",
+        "password": "c81e728d9d4c2f636f067f89cc14862c"
+    },
+    {
+        "username": "othiccboichungus",
+        "first": "alan",
+        "last": "l",
+        "email": "alanthechungus@gmail.com",
+        "password": "a6bca1114633f359ab6b2a697ce10b8e"
     }
 ]

@@ -5,6 +5,7 @@ body{
   color:var(--white);
   /*background-color:var(--dark)*/
   background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('https://images.alphacoders.com/909/thumb-1920-909514.jpg');
+  /*background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('https://cdn.discordapp.com/attachments/849751840526565456/862529279917293608/image0.jpg');*/
   background-size: auto 125%;
   background-repeat: no-repeat;
   background-position: left top;background-attachment: fixed;
