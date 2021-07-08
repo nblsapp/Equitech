@@ -154,10 +154,17 @@
         "password": "847dc0f7420f7d9b30abccf8729bd028"
     },
     {
-        "username": "a",
-        "first": "a",
-        "last": "a",
-        "email": "a@a",
-        "password": "0cc175b9c0f1b6a831c399e269772661"
+        "username": "yume.chan",
+        "first": "Caroline",
+        "last": "Chang",
+        "email": "carolinechang24@gmail.com",
+        "password": "779a8d5f71bb30eb82fec1a1590c1e08"
+    },
+    {
+        "username": "BladedShadows",
+        "first": "Max",
+        "last": "Gisselbrecht",
+        "email": "max.gisselbrecht@gmail.com",
+        "password": "b29217c82741831ea58842bbc6fd69fc"
     }
 ]
