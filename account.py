@@ -162,7 +162,18 @@ def appearance():
   if found == False:
     return redirect(f'/login?path={request.path.replace("/","%2F")}')
   return render_template('account/appearance.html')
-
+@app.route('/account/appearance',methods=['POST'])
+def appe_post():
+  id_ = request.form['id']
+  with open('static/json/image.json') as f:
+    f = json.load(f)
+  try:
+    var = f[id_]
+  except:
+    return redirect('/account/appearance')
+  resp = make_response(redirect('/account/appearance'))
+  resp.set_cookie('bkg',var)
+  return resp
 @app.route('/account/advanced')
 def advanced():
   username = request.cookies.get('login')

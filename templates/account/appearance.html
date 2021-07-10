@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+ {% extends "layout.html" %}
 {% block main %}
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,16 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+.imagecard{
+  height:100px;
+  margin:5px;
+
+}
+.card{
+  float:left;
+  height:140px;
+  
+}
 .card2{
     border-style:none none solid none;
     border-width:10px;
@@ -64,6 +74,7 @@
 <h1 style="float: left;">TestPreparer Account</h1>
 
 </div>
+
 <div class="sidenav" style='font-size:15px;'>
   <a href="/account"><i class="material-icons" style="font-size:30px;">account_circle</i> Home</a>
   <a href="/account/education"><i class="material-icons" style="font-size:30px;">school</i> Education Settings</a>
@@ -80,14 +91,184 @@
 </div>
 
 <div class="main">
-<h1>{{username}}</h1>
-<h2>{{name}}</h2>
-<h2>{{mail}}</h2>
-<h2>Bio: (Click to Edit)</h2>
+<style>
+input[type=text]{
+  padding:5px;
+  width:50%;
+  height:5%;
+  border-radius:10px;
+  border-style:none;
+  margin:5px;
+}
+input[type=url]{
+  padding:5px;
+  width:50%;
+  height:5%;
+  border-radius:10px;
+  border-style:none;
+  margin:5px;
+}
+input[type=email]{
+  padding:5px;
+  width:50%;
+  height:5%;
+  border-radius:10px;
+  border-style:none;
+  margin:5px;
+}
+input[type=password]{
+  padding:5px;
+  width:50%;
+  height:5%;
+  border-radius:10px;
+  border-style:none;
+  margin:5px;
+}
+input[type=number]{
+  padding:5px;
+  width:50%;
+  height:5%;
+  border-radius:10px;
+  border-style:none;
+}
+a{
+    color:#34bdeb;
+    text-decoration:none;
+  }
+  a:hover{
+    color:#348ceb;
+    text-decoration:none;
+  }
+select{
+  background:transparent;
+  color:white;
+  font-size:1em;
+}
+.new{
+  background:transparent;
+  color:white;
+  border-color:white;
+  border-width:2px;
+  border-radius:5px;
+  border-style:solid;
+  font-size:1em;
+}
+.new1{
+  background:transparent;
+  color:white;
+  width:10%;
+  font-size:1em;
+}
+input .new{
+  border-color:white;
+  border-width:2px;
+  border-radius:5px;
+  border-style:solid;
+  font-size:1em;
+}
+.new::placeholder{
+  color:white;
+  font-size:1em;
+}
+
+.dropbtn {
+  background-color: #fcc203;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius:20px;
+  cursor: pointer;
+
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #03c6fc;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
 <form method='POST'>
-<textarea name='bio' style="background:transparent;border-style:solid;border-width:5px;border-color:white;color:white;font-family:'Lexend Deca', sans-serif;width:50%;height:300px;resize: none;" placeholder='You do not have a bio! Type on this to remove this message!'>{{bio}}</textarea><br>
-<input type='submit' value='Save!'>
+  <input style='height:30px;' type='text' name='id' placeholder='Change your background image by typing one of the ids below!'>
+  <input style='height:30px;' type='submit' value='Apply!'>
 </form>
-</div>
+<h1>US National Parks</h1>
+
+<div class='card'>ID: 01<br><img class='imagecard' src='/static/wallpaper/craterLake1.jpeg'></div>
+<div class='card'>ID: 02<br><img class='imagecard' src='/static/wallpaper/craterLake2.jpeg'></div>
+<div class='card'>ID: 03<br><img class='imagecard' src='/static/wallpaper/deathValley.jpeg'></div>
+<div class='card'>ID: 04<br><img class='imagecard' src='/static/wallpaper/jtree.jpeg'></div>
+<div class='card'>ID: 05<br><img class='imagecard' src='/static/wallpaper/lassenVolcanic.jpeg'></div>
+<div class='card'>ID: 06<br><img class='imagecard' src='/static/wallpaper/olympic1.jpeg'></div>
+<div class='card'>ID: 07<br><img class='imagecard' src='/static/wallpaper/olympic2.jpeg'></div>
+<div class='card'>ID: 08<br><img class='imagecard' src='/static/wallpaper/olympic3.jpeg'></div>
+<div class='card'>ID: 09<br><img class='imagecard' src='/static/wallpaper/pinnacles.jpeg'></div>
+<div class='card'>ID: 10<br><img class='imagecard' src='/static/wallpaper/sequoia.jpeg'></div>
+<div class='card'>ID: 11<br><img class='imagecard' src='/static/wallpaper/grandCanyon.jpeg'></div>
+<div class='card'>ID: 12<br><img class='imagecard' src='/static/wallpaper/costal_island.jpeg'></div>
+<h1 style='clear:both;'>US Cities</h1>
+<div class='card'>ID: 13<br><img class='imagecard' src='/static/wallpaper/newYork.jpeg'></div>
+<div class='card'>ID: 14<br><img class='imagecard' src='/static/wallpaper/losAngeles.jpeg'></div>
+<div class='card'>ID: 15<br><img class='imagecard' src='/static/wallpaper/sanFrancisco.jpeg'></div>
+<h1 style='clear:both;'>Tech</h1>
+<div class='card'>ID: 16<br><img class='imagecard' src='/static/wallpaper/techy1.jpeg'></div>
+<div class='card'>ID: 17<br><img class='imagecard' src='/static/wallpaper/techy2.jpeg'></div>
+<h1 style='clear:both;'>International (Out of US)</h1>
+<div class='card'>ID: 18<br><img class='imagecard' src='/static/wallpaper/china1.jpeg'></div>
+<div class='card'>ID: 19<br><img class='imagecard' src='/static/wallpaper/china2.jpeg'></div>
+<div class='card'>ID: 20<br><img class='imagecard' src='/static/wallpaper/china3.jpeg'></div>
+<div class='card'>ID: 21<br><img class='imagecard' src='/static/wallpaper/china4.jpeg'></div>
+<div class='card'>ID: 22<br><img class='imagecard' src='/static/wallpaper/china5.jpeg'></div>
+<div class='card'>ID: 23<br><img class='imagecard' src='/static/wallpaper/shanghai1.jpeg'></div>
+<div class='card'>ID: 24<br><img class='imagecard' src='/static/wallpaper/shanghai2.jpeg'></div>
+<div class='card'>ID: 25<br><img class='imagecard' src='/static/wallpaper/costaRica.jpeg'></div>
+<div class='card'>ID: 26<br><img class='imagecard' src='/static/wallpaper/italy1.jpeg'></div>
+<div class='card'>ID: 27<br><img class='imagecard' src='/static/wallpaper/italy2.jpeg'></div>
+<div class='card'>ID: 28<br><img class='imagecard' src='/static/wallpaper/italy3.jpeg'></div>
+<div class='card'>ID: 29<br><img class='imagecard' src='/static/wallpaper/venice.jpeg'></div>
+<div class='card'>ID: 30<br><img class='imagecard' src='/static/wallpaper/japan1.jpeg'></div>
+<div class='card'>ID: 31<br><img class='imagecard' src='/static/wallpaper/japan2.jpeg'></div>
+<div class='card'>ID: 32<br><img class='imagecard' src='/static/wallpaper/japan3.jpeg'></div>
+<h1 style=
+'clear:both;'>
    
 {% endblock %}

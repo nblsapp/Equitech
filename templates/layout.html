@@ -1,7 +1,31 @@
+
 <!DOCTYPE html>
 <div style="background:#00a2ff;width:100%;padding:5px 0px 5px 0px;">TestPreparer 1.1 is out! First stable version!</div>
-<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>
 
+<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>
+<script>
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+  function lol(){
+      let bkg = 'linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),url("/static/wallpaper/';
+      if (getCookie("bkg")!=null){
+        bkg+=getCookie("bkg");
+      }
+      else{
+        bkg+='jtree'
+      }
+      bkg+='.jpeg")';
+
+
+
+      document.body.style.backgroundImage = bkg;
+  }
+  lol();
+      
+  </script>
 
 <script>
 twemoji.parse(genericNode, {
@@ -21,7 +45,7 @@ twemoji.parse(document.body);
 
 </script>
 
-<html lang="en">
+<html lang="en" >
   <head>
     <div id='fun'></div>
     <title>TestPreparer</title>
@@ -39,7 +63,7 @@ twemoji.parse(document.body);
     <script src="/static/script.js"></script>
   </head>
 
-  <body onload="init()">
+  <body onload="init(); lol();" id='html'>
     <!-- Command Shortcut Modal -->
     <div id="shortcut-modal" class="modal">
       <div class="modal-content" id="shortcut-info"></div>
