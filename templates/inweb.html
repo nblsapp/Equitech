@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block main %}
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-native-gif-search@1.3.2/index.js"></script>
 <script>
   $(function(){
     // don't cache ajax or content won't be fresh
@@ -18,17 +20,11 @@
 // end  
 });
 </script>
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-  tinymce.init({
-    selector: "#mytextarea",
-    plugins: "emoticons",
-    toolbar: "emoticons",
-    toolbar_location: "bottom",
-    menubar: false
-  });
-</script>
 <style>
+  emoji-picker {
+  --background:rgba(39, 40, 41,0.5);
+}
+
   .box{
     border-style:none none solid none;
     border-width:10px;
@@ -36,10 +32,15 @@
     width:300px;
     height:150px;
     margin:5px;
-    float:right;
     background:rgba(0,0,0,0.3); 
     border-radius:10px;
     color:white;
+  }
+  .chatright{
+    float:left;
+    
+
+
   }
   .chat{
     border-style:none;
@@ -50,7 +51,7 @@
     border-radius:10px;
     color:white;
   }
-  box img{
+  .box img{
     text-align:center;
   }
   .box:hover{
@@ -70,6 +71,9 @@
     height:20px;
     background:orange;
   }
+  .material-icons md-18:active{
+    background:#878684;
+  }
 </style>
 <h1 style='border-style:none;border-width:10px;border-color:transparent;width:100%;height:60px;background:rgba(0,0,0,0.3);border-radius:10px; color:white;margin-bottom:20px;text-align:center;'>{{server}}</h1>
 <h2 style='border-style:none;border-width:10px;border-color:transparent;width:100%;height:40px;background:rgba(0,0,0,0.3);border-radius:10px; color:white;margin-bottom:20px;text-align:center;'>{{name}}<span style='color:grey;'>&nbsp&nbsp({{username}})</span></h2>
@@ -78,10 +82,21 @@
   <p><span style='color:yellow;'>{{i[0]}}</span>: {{i[1]}}</p>
   {% endfor %}
   <form method='POST' action={{'/submit/'+link}}>
-  <input type='text'  id="mytextarea" placeholder ='Type your  message...' style='width:800px' name='message'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script>
+    document.querySelector('emoji-picker')
+  .addEventListener('emoji-click', event => console.log(event.detail));
+  </script>
+  <i onclick='if (document.getElementById("emojis").style.display == "none"){document.getElementById("emojis").style.display = "block";}else{document.getElementById("emojis").style.display = "none";}'class="material-icons md-18">emoji_emotions</i><i class="material-icons md-18">gif_box</i><input type='text'  id="mytextarea" placeholder ='Type your  message...' style='width:800px' name='message'>
+  <emoji-picker class="dark" id='emojis' style='display:none;'></emoji-picker>
+  <GifSearch
+  tenorApiKey="AVNYCXC0ZHP6"
+  giphyApiKey="nmyeU3Fi8uRqstA3b8tyEM1Vqc4CpdVg  "
+  onGifSelected="(gif_url)=>{alert(gif_url)}"/>
   <input type='submit' style='width:300px' value='Send!'>
   </form>
 </div>
+<div class='chatright'>
 <div class='box'> 
   <h1>Calendar</h1>
 </div>
@@ -94,10 +109,11 @@
 <h1 style='clear:both;color:transparent;'> .</h1>
 <div class='box'> 
   <h1>Announcements</h1>
-  <h1>Remember, Comps is in 2 weeks!</h1>
+  <h2>Go to settings to set an announcement! Only comunity admins can give announcements</h2>
 </div>
 <h1 style='clear:both;color:transparent;'> .</h1>
 <a href='/settings'><div class='box'> 
   <h1>Setting</h1>
 </div></a>
+</div>
 {% endblock %}

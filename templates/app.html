@@ -126,9 +126,10 @@
     top: 0;
     width: 51%;
     height: 100%;
-    background:#333436;
+    /* background:#333436;
     background-repeat: no-repeat;
-    background-size:100% 100%;
+    background-size:100% 100%; */
+    background:no-repeat center center fixed; 
     z-index: 1000;
 }
  
@@ -264,7 +265,31 @@ $(document).ready(function() {
 </script>
 </center>
 <div id="content">
-<meta http-equiv="refresh" content="2; URL=/app" />
+<meta http-equiv="refresh" content="4; URL=/app" />
 </div>
+<script>
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+  function lol(){
+      let bkg = 'linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),url("/static/wallpaper/';
+      if (getCookie("bkg")!=null){
+        bkg+=getCookie("bkg");
+      }
+      else{
+        bkg+='jtree'
+      }
+      bkg+='.jpeg")';
+
+
+
+      document.getElementById('#loader-wrapper').style.backgroundImage = bkg;
+  }
+  lol();
+      
+  </script>
+
 </center>
 {% endblock %}
