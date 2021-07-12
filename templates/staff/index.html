@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block main %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<h1>TestPreparer/TechBox Staff</h1>
+<h3>Your TestPreparer account is now bounded with {{name}}</h3>
+<style>
+  button{
+    background:#7288DA;
+    color:white;
+    border-radius:5px;
+    padding:8px;
+    border-style:none;
+    font-size:28px;
+  }
+  button:hover{
+    background:#5969A8;
+  }
+  .field{
+    background:rgba(0,0,0,0.5);
+    border-radius:10px;
+    width:400px;
+    height:400px;
+    margin:10px;
+    float:left;
+  }
+</style>
+<h1 style='font-size:5em'>Choose a Field to Continue</h1>
+<div class='field'>
+  <center>
+  <h1><i class="material-icons" style="font-size:3em;">code</i></h1>
+  <h1>Developer</h1>
+  <a href='/staff/dev'><button>Select</button>
+  </center></a>
+  
+</div>
+
+<div class='field'>
+  <center>
+  <h1><i class="material-icons" style="font-size:3em;">bug_report</i></h1>
+  <h1>Beta Testing</h1>
+  <a href='/staff/testing'><button>Select</button>
+  </center></a>
+  </center>
+  
+</div>
+<div class='field'>
+  <center>
+  <h1><i class="material-icons" style="font-size:3em;">palette</i></h1>
+  <h1>Artist</h1>
+  <a href='/staff/art'><button>Select</button></a>
+  </center>
+  
+</div>
+{% endblock %}

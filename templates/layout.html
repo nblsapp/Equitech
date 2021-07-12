@@ -2,47 +2,45 @@
 <!DOCTYPE html>
 <div style="background:#00a2ff;width:100%;padding:5px 0px 5px 0px;">TestPreparer 1.1 is out! First stable version!</div>
 
-<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>
 <script>
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+function parseCookie(cookie) {
+  return cookie.split(/;\s*/g)
+    .map((c) => {
+      let sp = c.split('=');
+      return [sp.shift(), sp.join('=')].map(decodeURIComponent);
+    })
+    .reduce((o, [key, val]) => {
+      o[key.trim()] = val.trim();
+			return o;
+    }, {});
 }
-  function lol(){
-      let bkg = 'linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),url("/static/wallpaper/';
-      if (getCookie("bkg")!=null){
-        bkg+=getCookie("bkg");
-      }
-      else{
-        bkg+='jtree'
-      }
-      bkg+='.jpeg")';
 
+(async function setbg() {
+	const cookies = parseCookie(document.cookie);
+  let bkg = cookies['bkg'] && cookies['bkg'].match(/^\w+$/)
+		? cookies['bkg'] : 'jtree';
+	let url = `/static/wallpaper/${bkg}.jpeg`;
+	const res = await fetch(url);
+	if (res.status !== 200) url = '/static/wallpaper/jtree.jpeg';
+  document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("${url}")`;
+})();
+</script>
 
-
-      document.body.style.backgroundImage = bkg;
-  }
-  lol();
-      
-  </script>
-
+<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>
 <script>
 twemoji.parse(genericNode, {
   folder: 'svg',
   ext: '.svg'
 });
-function init(){
-  // Set the size of the rendered Emojis
-// This can be set to 16x16, 36x36, or 72x72
-twemoji.size = '16x16';
+(function init(){
+	// Set the size of the rendered Emojis
+	// This can be set to 16x16, 36x36, or 72x72
+	twemoji.size = '16x16';
 
-// Parse the document body and
-// insert <img> tags in place of Unicode Emojis
-twemoji.parse(document.body);
-
-}
-
+	// Parse the document body and
+	// insert <img> tags in place of Unicode Emojis
+	twemoji.parse(document.body);
+})();
 </script>
 
 <html lang="en" >
@@ -63,7 +61,7 @@ twemoji.parse(document.body);
     <script src="/static/script.js"></script>
   </head>
 
-  <body onload="init(); lol();" id='html'>
+  <body id='html'>
     <!-- Command Shortcut Modal -->
     <div id="shortcut-modal" class="modal">
       <div class="modal-content" id="shortcut-info"></div>
@@ -186,14 +184,13 @@ twemoji.parse(document.body);
       }
       function mode(){
         if (document.getElementById('remember').checked) {
-          swapStyleSheet("static/css/style.css?version="+Math.floor(Math.random() * 100000000););
-          alert('Success');
+          swapStyleSheet(`static/css/style.css?version=${Math.floor(Math.random() * 100000000)}`);
         }
-        else{
-          swapStyleSheet("static/css/white.css?version="+Math.floor(Math.random() * 100000000););
-          alert('Success');
+        else {
+          swapStyleSheet(`static/css/white.css?version=${Math.floor(Math.random() * 100000000)}`;
         }
       }
+			alert('Success');
     </script>
   </body>
 </html>

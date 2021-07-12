@@ -99,19 +99,19 @@
 {% endif %}<br>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-$('#change').on('click',function(){
-    if($('#1').css('display')!='none'){
+$('#change').on('click', function(){
+	if ($('#1').css('display') !== 'none') {
     $('#2').show().siblings('div').hide();
-    }else if($('#2').css('display')!='none'){
-        $('#1').show().siblings('div').hide();
-    }
+	} else if ($('#2').css('display') !== 'none') {
+		$('#1').show().siblings('div').hide();
+	}
 });
 setTimeout(function() {
-    $('#1').fadeOut(10000);
-}, 1000); // <-- time in milliseconds
-setTimeout2(function() {
-    $('#2').fadeOut(10000);
-}, 1000); // <-- time in milliseconds
+	$('#1').fadeOut(10000);
+}, 1000);
+setTimeout(function() {
+	$('#2').fadeOut(10000);
+}, 1000);
 </script>
 
 {% endblock %}

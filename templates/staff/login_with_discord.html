@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<h3>Logged in as <b>{{name}}</b><a href='/logout'>Not You?</a></h3>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+  button{
+    background:#7288DA;
+    color:white;
+    border-radius:5px;
+    padding:8px;
+    border-style:none;
+    font-size:28px;
+  }
+  button:hover{
+    background:#5969A8;
+  }
+</style>
+<a href='https://discord.com/api/oauth2/authorize?client_id=863783155919880232&redirect_uri=https%3A%2F%2Ftestpreparer.gq%2Fstaff%2Fdashboard&response_type=code&scope=identify'><button><img src='https://discord.com/assets/145dc557845548a36a82337912ca3ac5.svg' width=50px> Link Discord Account</button></a>
+{% endblock %}

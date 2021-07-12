@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, make_response, redirect, flas
 import requests
 import hashlib
 from flask_mail import Mail, Message
+import requests
+import json
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -21,8 +23,90 @@ mail = Mail(app)
 import community
 import account
 import extentions
+def exchange_code(code):
+      data = {
+        'client_id': 863783155919880232  ,
+        'client_secret': "fsqTLEKJtqxJlBk_iSFmp_G4s0Ki9G5V",
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': "https://testpreparer.gq/staff/dashboard"
+      }
+      headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+      r = requests.post('https://discord.com/api/v8/oauth2/token', data=data, headers=headers)
+      #r.raise_for_status()
+      return r.json()
+      
+global baseUrl
+baseUrl = "https://discordapp.com/api"
+def getHeaders(access_token):
+    return {
+        "Authorization" : "{} {}".format("Bearer", access_token),
+        # "user-agent" : "DiscordBackup/0.0.1"
+    } 
 
+def getRequest(access_token, endpoint, asJson = True, additional = None):
+    url = "{}/{}".format(baseUrl, endpoint)
+    req = requests.get(url, headers = getHeaders(access_token))
+   
+    if asJson:
+        return json.loads(req.text)
+    else:
+        return req.text
 
+def getMe(access_token): # this works
+    endpoint = "users/@me"
+    return getRequest(access_token, endpoint)
+@app.route('/staff/testing')
+def testing():
+  return render_template('staff/testing.html')
+@app.route('/staff/dashboard')
+def dashboard():
+  if request.cookies.get('name') !=None:
+    return render_template('staff/index.html',name=request.cookies.get('name'))
+  if "code" in request.args:
+      code = request.args["code"]
+      print(code)
+      data = exchange_code(code)
+      print(data)
+
+      access_token = data['access_token']
+      data = getMe(access_token)
+      user = f"{data['username']}#{data['discriminator']}"
+    
+      data = [user,  f"https://cdn.discordapp.com/avatars/{data['id']}/{data['avatar']}.png"]
+      print(data)
+      resp = make_response(render_template('staff/index.html',name=data[0]))
+      resp.set_cookie('name',data[0])
+      resp.set_cookie('email', '')
+      resp.set_cookie('image', data[1])
+      return resp
+    
+    
+  else:
+    return redirect('/staff')
+@app.route('/staff')
+def staff():
+    username = request.cookies.get('login')
+    psw = request.cookies.get('psw')
+    if username == None:
+        return redirect(f'/login?path={request.path.replace("/","%2F")}')
+    with open('static/json/members.json') as a:
+        a = json.load(a)
+    found = False
+    for i in a:
+        if i["email"] == username:
+            if str(i["password"]) != str(psw):
+                return redirect(
+                    f'/login?path={request.path.replace("/","%2F")}')
+            else:
+                found = True
+                name = i["username"]
+    if found == False:
+        return redirect(f'/login?path={request.path.replace("/","%2F")}')
+    return render_template('staff/login_with_discord.html',name=name)
+  
 @app.route('/testing/<file>')
 def fil2(file):
     return render_template(file)
