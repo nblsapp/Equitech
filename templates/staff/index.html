@@ -1,8 +1,332 @@
 {% extends "layout.html" %}
 {% block main %}
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The poll (background) */
+.poll {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* poll Content */
+.poll-content {
+  background-color: black;
+  color:white;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- Trigger/Open The poll -->
+<button id="pollbtn">Launch Poll</button>
+<a href='/staff/analytics'><button>View Analytics</button>
+<!-- The poll -->
+<div id="mypoll" class="poll">
+
+  <!-- poll content -->
+  <div class="poll-content">
+    <span class="close">&times;</span>
+    <h1>Choose TestPreparer's new Name</h1>
+    <style>
+        .control {
+            font-family: arial;
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 5px;
+            padding-top: 3px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+            .control input {
+                position: absolute;
+                z-index: -1;
+                opacity: 0;
+            }
+        .control_indicator {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background: #e6e6e6;
+            border: 0px solid #000000;
+            border-radius: undefinedpx;
+        }
+        .control:hover input ~ .control_indicator,
+        .control input:focus ~ .control_indicator {
+            background: #ffb800;
+        }
+        
+        .control input:checked ~ .control_indicator {
+            background: #ff8f00;
+        }
+        .control:hover input:not([disabled]):checked ~ .control_indicator,
+        .control input:checked:focus ~ .control_indicator {
+            background: #0e6647d;
+        }
+        .control input:disabled ~ .control_indicator {
+            background: #e6e6e6;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .control_indicator:after {
+            box-sizing: unset;
+            content: '';
+            position: absolute;
+            display: none;
+        }
+        .control input:checked ~ .control_indicator:after {
+            display: block;
+        }
+        .control-radio .control_indicator {
+            border-radius: 50%;
+        }
+        
+        .control-radio .control_indicator:after {
+            left: 7px;
+            top: 7px;
+            height: 6px;
+            width: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+            transition: background 250ms;
+        }
+        .control-radio input:disabled ~ .control_indicator:after {
+            background: #7b7b7b;
+        }.control-radio .control_indicator::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4.5rem;
+            height: 4.5rem;
+            margin-left: -1.3rem;
+            margin-top: -1.3rem;
+            background: #ffcf00;
+            border-radius: 3rem;
+            opacity: 0.4;
+            z-index: 99999;
+            transform: scale(0);
+        }
+        @keyframes s-ripple {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            20% {
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.01;
+                transform: scale(1);
+            }
+        }
+        @keyframes s-ripple-dup {
+           0% {
+               transform: scale(0);
+            }
+           30% {
+                transform: scale(1);
+            }
+            60% {
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+        .control-radio input + .control_indicator::before {
+            animation: s-ripple 250ms ease-out;
+        }
+        .control-radio input:checked + .control_indicator::before {
+            animation-name: s-ripple-dup;
+        }
+    </style>
+    <form method='POST'>
+    <div class="control-group">
+        <label class="control control-radio">
+            Techbox
+            <input value="1" type="radio" name="radio" checked="checked" />
+            <div class="control_indicator"></div>
+        </label>
+        <label class="control control-radio">
+            Techcube
+            <input value="2" type="radio" name="radio" />
+            <div class="control_indicator"></div>
+        </label>
+        <label class="control control-radio">
+            TestPreparer
+            <input value="3" type="radio" name="radio" />
+            <div class="control_indicator"></div>
+        </label>
+        <label class="control control-radio">
+            Equitech
+            <input value="4" type="radio" name="radio" />
+            <div class="control_indicator"></div>
+        </label>
+        <input type="submit" value="Send!">
+        </form>
+        
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Get the poll
+var poll = document.getElementById("mypoll");
+
+// Get the button that opens the poll
+var btn = document.getElementById("pollbtn");
+
+// Get the <span> element that closes the poll
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the poll 
+btn.onclick = function() {
+  poll.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the poll
+span.onclick = function() {
+  poll.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the poll, close it
+window.onclick = function(event) {
+  if (event.target == poll) {
+    poll.style.display = "none";
+  }
+}
+</script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("anaBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div style="display:none;">
 <h1>TestPreparer/TechBox Staff</h1>
 <h3>Your TestPreparer account is now bounded with {{name}}</h3>
+<h2>Bugs Reported (BETA Testing)</h2>
+<progress id="file" value="32" max="100"> 32% </progress>
+<h2>Bugs Fixed (DEVS)</H2>
 <style>
   button{
     background:#7288DA;
@@ -50,5 +374,6 @@
   <a href='/staff/art'><button>Select</button></a>
   </center>
   
+</div>
 </div>
 {% endblock %}

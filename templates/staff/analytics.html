@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block main %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<h1>Analytics!</h1>
+<h2>Share analytics: <a href='/staff/analytics'>https://testpreparer.gq/staff/analytics</a></h2>
+<h3>There are no analytics to show (yet)</h3>
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable({{poll | safe}});
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Final TestPreparer Name', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+{% endblock %}

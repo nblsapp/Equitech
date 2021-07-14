@@ -20,6 +20,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
+
 import community
 import account
 import extentions
@@ -88,25 +89,64 @@ def dashboard():
     return redirect('/staff')
 @app.route('/staff')
 def staff():
-    username = request.cookies.get('login')
-    psw = request.cookies.get('psw')
-    if username == None:
-        return redirect(f'/login?path={request.path.replace("/","%2F")}')
-    with open('static/json/members.json') as a:
-        a = json.load(a)
-    found = False
-    for i in a:
-        if i["email"] == username:
-            if str(i["password"]) != str(psw):
-                return redirect(
-                    f'/login?path={request.path.replace("/","%2F")}')
-            else:
-                found = True
-                name = i["username"]
-    if found == False:
-        return redirect(f'/login?path={request.path.replace("/","%2F")}')
-    return render_template('staff/login_with_discord.html',name=name)
-  
+    # username = request.cookies.get('login')
+    # psw = request.cookies.get('psw')
+    # if username == None:
+    #     return redirect(f'/login?path={request.path.replace("/","%2F")}')
+    # with open('static/json/members.json') as a:
+    #     a = json.load(a)
+    # found = False
+    # for i in a:
+    #     if i["email"] == username:
+    #         if str(i["password"]) != str(psw):
+    #             return redirect(
+    #                 f'/login?path={request.path.replace("/","%2F")}')
+    #         else:
+    #             found = True
+    #             name = i["username"]
+    # if found == False:
+    #     return redirect(f'/login?path={request.path.replace("/","%2F")}')
+    try:
+      return render_template('staff/login_with_discord.html',name=request.cookies.get('username'))
+    except:
+      return render_template('staff/login_with_discord.html',name="Guest User")
+def convert(var, array1):
+  init = ['1','2','3','4']
+  a = init.index(var.lower().strip())
+  return array1[a]
+
+@app.route('/staff/dashboard',methods=['POST'])
+def mydashboard():
+  a = request.form['radio']
+  # 1. Read file contents
+  filename = "static/json/poll.json"
+  with open(filename, "r") as file:
+      data = json.load(file)
+  # 2. Update json object
+  data[request.cookies.get('name')] = a
+  # 3. Write json file
+  with open(filename, "w") as file:
+      json.dump(data, file)
+  return redirect('/staff/analytics')
+@app.route('/staff/analytics')
+def analytics():
+  with open('static/json/poll.json') as file:
+    file = json.load(file)
+  poll = []
+  polls= {}
+  for i in file.values():
+    temp = i
+    temp = convert(temp,['Techbox','Techcube','TestPreparer','Equitech'])
+    poll.append(temp)
+  for i in poll:
+    try:
+      polls[i] +=1
+    except:
+      polls[i] = 1
+  poll = [['TestPreparer\'s New Name', 'Votes']]
+  for i in range(0,len(list(polls.keys()))):
+    poll.append([list(polls.keys())[i],polls[list(polls.keys())[i]]])
+  return render_template('staff/analytics.html',poll=poll)
 @app.route('/testing/<file>')
 def fil2(file):
     return render_template(file)
