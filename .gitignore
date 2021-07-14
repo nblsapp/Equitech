@@ -11,6 +11,7 @@ node_modules/
 *.json
 #txt files also don't need to be pushed
 *.txt
+*.py
 
 # C extensions
 *.so
