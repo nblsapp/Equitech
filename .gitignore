@@ -6,7 +6,11 @@
 #my
 *.py
 node_modules/
-
+*.gitignore
+*.lock
+*.json
+*.toml
+*.breakpoints
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
