@@ -1,4 +1,44 @@
 {% block main %}
+<script>
+function parseCookie(cookie) {
+  return cookie.split(/;\s*/g)
+    .map((c) => {
+      let sp = c.split('=');
+      return [sp.shift(), sp.join('=')].map(decodeURIComponent);
+    })
+    .reduce((o, [key, val]) => {
+      o[key.trim()] = val.trim();
+			return o;
+    }, {});
+}
+
+(async function setbg() {
+	const cookies = parseCookie(document.cookie);
+  let bkg = cookies['bkg'] && cookies['bkg'].match(/^\w+$/)
+		? cookies['bkg'] : 'northernLights3';
+	let url = `/static/wallpaper/${bkg}.jpeg`;
+	const res = await fetch(url);
+	if (res.status !== 200) url = '/static/wallpaper/northernLights3.jpeg';
+  document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("${url}")`;
+})();
+</script>
+
+<script src="https://twemoji.maxcdn.com/twemoji.min.js"></script>
+<script>
+twemoji.parse(genericNode, {
+  folder: 'svg',
+  ext: '.svg'
+});
+(function init(){
+	// Set the size of the rendered Emojis
+	// This can be set to 16x16, 36x36, or 72x72
+	twemoji.size = '16x16';
+
+	// Parse the document body and
+	// insert <img> tags in place of Unicode Emojis
+	twemoji.parse(document.body);
+})();
+</script>
 <title>{{i["name"]}} | {{i["author"]}}</title>
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 <link href={{"/static/css/style.css?version=" ~ range(1, 100000000) | random}} rel="stylesheet" id='swap'/>

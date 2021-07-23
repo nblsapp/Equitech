@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-<div style="background:#00a2ff;width:100%;padding:5px 0px 5px 0px;">TestPreparer 1.1 is out! First stable version!</div>
 
 <script>
 function parseCookie(cookie) {
@@ -18,10 +17,10 @@ function parseCookie(cookie) {
 (async function setbg() {
 	const cookies = parseCookie(document.cookie);
   let bkg = cookies['bkg'] && cookies['bkg'].match(/^\w+$/)
-		? cookies['bkg'] : 'jtree';
+		? cookies['bkg'] : 'northernLights3';
 	let url = `/static/wallpaper/${bkg}.jpeg`;
 	const res = await fetch(url);
-	if (res.status !== 200) url = '/static/wallpaper/jtree.jpeg';
+	if (res.status !== 200) url = '/static/wallpaper/northernLights3.jpeg';
   document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("${url}")`;
 })();
 </script>
@@ -46,19 +45,24 @@ twemoji.parse(genericNode, {
 <html lang="en" >
   <head>
     <div id='fun'></div>
-    <title>TestPreparer</title>
-    <meta property="og:title" content="TestPreparer" />
+    <title>Equitech - Balance Your Organization</title>
+    <meta property="og:title" content="Equitech - Balance Your Organization" />
+    <meta property="og:site_name" content="Equitech" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://testpreparer.gq" />
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/862132029465952277/862165561123536916/Screen_Shot_2021-07-06_at_7.57.55_PM.png" />
-    <meta property="og:description" content="TestPreparer is an app that can help students with their daily life from studies to social life to entertainment. This app also includes many integrations for learning (e.g AoPS, Zoom.us) and entertainment (e.g. Youtube, Spotify)." />
+    <meta property="og:url" content="http://Equitech.gq" />
+    <meta property="og:image" content="https://Equitech.nicholasxwang.repl.co/static/equitech_long.png" />
+    <meta property="og:description" content="Equitech is an app that can help students with balancing and organizing their daily life from studies to social life to entertainment. This app also includes many integrations for learning (e.g AoPS, Zoom.us) and entertainment (e.g. Youtube, Spotify)." />
     <meta name="theme-color" content="#FCC101">
-    <link rel="shortcut icon" type="image/jpg" href="https://cdn.discordapp.com/icons/849751839972130816/c57cd596fa8553bff4e6c8b4017d0c44.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/static/equitech_full.png"/>
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@equitech" />
+    <meta name="twitter:creator" content="@equitech" />
+    <!-- endsection -->
 
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link href={{"/static/css/style.css?version=" ~ range(1, 100000000) | random}} rel="stylesheet" id='swap'/>
     <link href="/static/css/main.css" rel="stylesheet" />
-    <script src="/static/script.js"></script>
   </head>
 
   <body id='html'>
@@ -70,11 +74,11 @@ twemoji.parse(genericNode, {
     <!-- Right Click Menu -->
     <div id="contextMenu" class="context-menu" style="display:none">
       <ul>
-        <li><a href="/app">TestPreparer Dashboard</a></li>
-        <li><a href="/education">TestPreparer Education</a></li>
-        <li><a href="/community">TestPreparer Community</a></li>
-        <li><a href="/extentions">TestPreparer Extentions</a></li>
-        <li><a href="/account">TestPreparer Account</a></li>
+        <li><a href="/app">Equitech Dashboard</a></li>
+        <li><a href="/education">Equitech Education</a></li>
+        <li><a href="/community">Equitech Community</a></li>
+        <li><a href="/extentions">Equitech Extentions</a></li>
+        <li><a href="/account">Equitech Account</a></li>
         <li><a href="/music">Music</a></li>
         <li><a href="/zoom">Join Zoom Meeting</a></li>
         <li><a href="/logout">Log Out</a></li>
@@ -178,20 +182,8 @@ twemoji.parse(genericNode, {
       document.onclick = hideMenu;
       document.oncontextmenu = rightClick;
     </script>
-    <script>
-      function swapStyleSheet(newsheet){
-        document.getElementById('swap').setAttribute("href", newsheet);
-      }
-      function mode(){
-        if (document.getElementById('remember').checked) {
-          swapStyleSheet(`static/css/style.css?version=${Math.floor(Math.random() * 100000000)}`);
-        }
-        else {
-          swapStyleSheet(`static/css/white.css?version=${Math.floor(Math.random() * 100000000)}`;
-        }
-      }
-			alert('Success');
-    </script>
+
+    <h1 style='clear:both;'></h1>
   </body>
 </html>
 

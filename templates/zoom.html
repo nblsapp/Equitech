@@ -1,246 +1,322 @@
 {% block main %}
-<title>TestPreparer LMS</title>
-<!-- The Modal -->
-<style>
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+<head>
+    <script>
+        function parseCookie(cookie) {
+            return cookie
+                .split(/;\s*/g)
+                .map((c) => {
+                    let sp = c.split("=");
+                    return [sp.shift(), sp.join("=")].map(decodeURIComponent);
+                })
+                .reduce((o, [key, val]) => {
+                    o[key.trim()] = val.trim();
+                    return o;
+                }, {});
+        }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h1>Keyboard Shortcuts</h1>
-    <p><span class='change'>Command/Control</span> + / - Open this box</p>
-    <p><span class='change'>Command/Control</span> + R - Secret Command</p>
-    <p><span class='change'>Command/Control</span> + G - Something Fun 
-    <p><span class='change'>Command/Control</span> + L - Log Out</p>
-    </p>
-  </div>
-
-</div>
-<link rel="icon" href="https://www.arts.gov/sites/default/files/BookEmoji.png" type="image/png" >
-<script src="static/script.js"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-<meta property="og:title" content="TestPreparer LMS" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://testpreparer.gq" />
-<meta property="og:image" content="/static/TestPreparer LMS.gif" />
-<meta property="og:description" content="A LMS MADE BY STUDENTS. A LMS DESIGNED FOR STUDENTS. TestPreparer LMS does things like helping students organize notes all the way to organizing grades. It also keeps track of assignments and provides a safe youtube and zoom integration." />
-<meta name="theme-color" content="#ff7657">
-
+        (async function setbg() {
+            const cookies = parseCookie(document.cookie);
+            let bkg = cookies["bkg"] && cookies["bkg"].match(/^\w+$/) ? cookies["bkg"] : "northernLights3";
+            let url = `/static/wallpaper/${bkg}.jpeg`;
+            const res = await fetch(url);
+            if (res.status !== 200) url = "/static/wallpaper/northernLights3.jpeg";
+            document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("${url}")`;
+        })();
+    </script>
+    <title>Equitech Meetings</title>
+    <!-- The Modal -->
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Keyboard Shortcuts</h1>
+            <p><span class="change">Command/Control</span> + / - Open this box</p>
+            <p><span class="change">Command/Control</span> + R - Secret Command</p>
+            <p><span class="change">Command/Control</span> + G - Something Fun</p>
+            <p><span class="change">Command/Control</span> + L - Log Out</p>
+        </div>
+    </div>
+    <link rel="icon" href="https://www.arts.gov/sites/default/files/BookEmoji.png" type="image/png" />
+    <script src="static/script.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
+    <meta property="og:title" content="TestPreparer LMS" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://testpreparer.gq" />
+    <meta property="og:image" content="/static/TestPreparer LMS.gif" />
+    <meta
+        property="og:description"
+        content="A LMS MADE BY STUDENTS. A LMS DESIGNED FOR STUDENTS. TestPreparer LMS does things like helping students organize notes all the way to organizing grades. It also keeps track of assignments and provides a safe youtube and zoom integration."
+    />
+    <meta name="theme-color" content="#ff7657" />
 </head>
 <body>
-	<style type="text/css">
-  /* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+    <style type="text/css">
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .context-menu {
+            position: absolute;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        .context-menu ul {
+            padding: 0px;
+            margin: 0px;
+            min-width: 150px;
+            list-style: none;
+        }
+        .context-menu ul li {
+            padding-bottom: 7px;
+            padding-top: 7px;
+            border: none;
+        }
+        .context-menu ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        .context-menu ul li:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+    <div id="contextMenu" class="context-menu" style="display: none;">
+        <ul>
+            <li><a href="/zoom">Join Zoom Meeting</a></li>
+            <li><a href="/music">Listen to Music</a></li>
+            <li><a href="/app">Return to Dashboard</a></li>
+            <li><a href="/">Return Home</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            <li><a href="#">--</a></li>
+            <li><a href="#">--</a></li>
+        </ul>
+    </div>
+    <script>
+        document.onclick = hideMenu;
+        document.oncontextmenu = rightClick;
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
+        function hideMenu() {
+            document.getElementById("contextMenu").style.display = "none";
+        }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-		.context-menu {
-			position: absolute;
-			text-align: center;
-			background: rgba(0,0,0,0.3);
-			border: none;
-		}
+        function rightClick(e) {
+            e.preventDefault();
 
-		.context-menu ul {
-			padding: 0px;
-			margin: 0px;
-			min-width: 150px;
-			list-style: none;
-		}
+            if (document.getElementById("contextMenu").style.display == "block") hideMenu();
+            else {
+                var menu = document.getElementById("contextMenu");
 
-		.context-menu ul li {
-			padding-bottom: 7px;
-			padding-top: 7px;
-			border: none;
-		}
+                menu.style.display = "block";
+                menu.style.left = e.pageX + "px";
+                menu.style.top = e.pageY + "px";
+            }
+        }
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        const ios = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+        const ctrl = ios ? "meta" : "ctrl";
 
-		.context-menu ul li a {
-			text-decoration: none;
-			color:white;
-		}
+        document.getElementsByClassName("change").innerHTML = `${ctrl}`;
 
-		.context-menu ul li:hover {
-			background: rgba(0,0,0,0.7);
-		}
-	</style>
+        Mousetrap.bind(`${ctrl}+r`, function (e) {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        });
+        Mousetrap.bind(`${ctrl}+l`, function (e) {
+            window.location.href = "/logout";
+        });
+        Mousetrap.bind(`${ctrl}+g`, function (e) {
+            document.body.innerHTML = "<h1>troll</h1>";
+        });
+        Mousetrap.bind(`${ctrl}+/`, function (e) {
+            modal.style.display = "block";
+        });
+        Mousetrap.bind(`${ctrl}+,`, function (e) {
+            modal.style.display = "block";
+        });
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+        Mousetrap.bind(`${ctrl}+l`, function (e) {
+            window.location.href = "/logout";
+        });
+    </script>
+    <link href={{"/static/css/zoom.css?version=" ~ range(1, 100000000) | random}} rel="stylesheet" id='swap'/>
+    <link rel="shortcut icon" href="https://st1.zoom.us/zoom.ico" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        /* Set height of body and the document to 100% */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 50%;
+        }
+        .tablink:hover {
+            background-color: #777;
+        }
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+    </style>
+    <body>
+        <button class="tablink" onclick="openPage('Zoom', this, '#2D8CFF')">Zoom</button>
+        <button class="tablink" onclick="openPage('Meet', this, '#34a853')" id="defaultOpen">Google Meet</button>
+        <div id="Zoom" class="tabcontent">
+            <title>Join Meeting - Zoom</title>
+            <style>
+                .center {
+                    padding: 70px 0;
+                    border: 0px solid green;
+                    text-align: center;
+                }
+                .zoom {
+                    background-color: #2d8cff;
+                    padding: 5px;
+                    color: white;
+                    border-radius: 5px;
+                }
+            </style>
+            <div class="center">
+                <form method="POST">
+                    <h1 style="color: white;">Join Meeting</h1>
+                    <h3 style="color: grey;">Meeting ID</h3>
+                    <input id="myinput" type="number" placeholder="Input your Zoom Number" name="id" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" /><br />
+                    <input type="password" placeholder="Password" name="pwd" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" /><br />
+                    <input type="submit" value="Join" class="zoom" />
+                    <p>Do you not have the Zoom Client Installed?</p>
+                    <p>Download <a href="https://zoom.us/client/latest/Zoom.pkg">here!</a></p>
+                    <p>Apple Silicon Macs, Download <a href="https://zoom.us/client/latest/Zoom.pkg?archType=arm64">here!</a></p>
+                    <p>Having trouble downloading? Try downloading in <a href="https://zoom.us/download">Zoom's Website</a></p>
+                    <p>Join from browser with this link: <a id="link" href="https://zoom.us/wc/join/">CLICK ME</a> (Finish Typing then click, for link is changing while you edit!</p>
+                </form>
+                <script>
+                    function getInputValue(){
+                            // Selecting the input element and get its value
+                            var inputVal = document.getElementById("myinput").value;
+                            document.getElementById("link").href="https://zoom.us/wc/join/"+inputVal;
 
+                            // Displaying the value
 
-	<div id="contextMenu" class="context-menu"
-		style="display:none">
-		<ul>
-			<li><a href="/zoom">Join Zoom Meeting</a></li>
-			<li><a href="/music">Listen to Music</a></li>
-			<li><a href="/app">Return to Dashboard</a></li>
-			<li><a href="/">Return Home</a></li>
-			<li><a href="/logout">Log Out</a></li>
-			<li><a href="#">--</a></li>
-			<li><a href="#">--</a></li>
-		</ul>
-	</div>
+                        }
+                    while true:
+                      getInputValue();
+                </script>
+            </div>
+            <div id="Meet" class="tabcontent">
+                <style>
+                    .center {
+                        padding: 70px 0;
+                        border: 0px solid green;
+                        text-align: center;
+                    }
+                    .meet {
+                        background-color: #34a853;
+                        padding: 5px;
+                        color: white;
+                        border-radius: 5px;
+                    }
+                </style>
+                <form method="POST" action="/meet">
+                    <h1 style="color: white;">Join Meeting</h1>
+                    <h3 style="color: grey;">Meeting ID</h3>
+                    <input type="text" placeholder="Input your Google Meet ID" name="id" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" /><br />
+                    <input type="submit" value="Join" class="meet" />
+                </form>
+            </div>
+        </div>
+        <script>
+            function openPage(pageName, elmnt, color) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.backgroundColor = "";
+                }
+                document.getElementById(pageName).style.display = "block";
+                elmnt.style.backgroundColor = color;
+            }
 
-	<script>
-		document.onclick = hideMenu;
-		document.oncontextmenu = rightClick;
-
-		function hideMenu() {
-			document.getElementById(
-				"contextMenu").style.display = "none"
-		}
-
-		function rightClick(e) {
-			e.preventDefault();
-
-			if (document.getElementById(
-				"contextMenu").style.display == "block")
-				hideMenu();
-			else {
-				var menu = document
-					.getElementById("contextMenu")
-					
-				menu.style.display = 'block';
-				menu.style.left = e.pageX + "px";
-				menu.style.top = e.pageY + "px";
-			}
-		}
-	</script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
-
-<script>
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
-const ios = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
-const ctrl = ios ? 'meta' : 'ctrl';
-
-document.getElementsByClassName("change").innerHTML = `${ctrl}`;
-
-Mousetrap.bind(`${ctrl}+r`, function(e) {
-  window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-});
-Mousetrap.bind(`${ctrl}+l`, function(e) {
-  window.location.href = '/logout';
-});
-Mousetrap.bind(`${ctrl}+g`, function(e) {
-	document.body.innerHTML = '<h1>troll</h1>';
-});
-Mousetrap.bind(`${ctrl}+/`, function(e) {
-	modal.style.display = "block";
-});
-Mousetrap.bind(`${ctrl}+,`, function(e) {
-	modal.style.display = "block";
-
-});
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-Mousetrap.bind(`${ctrl}+l`, function(e) {
-  window.location.href = '/logout';
-});
-
-// let keysPressed = { 'a': false, 'b': false }
-
-// document.addEventListener('keyup', (event) => {
-// 	event.preventDefault();
-
-// 	const { key } = event;
-// 	if (keysPressed[key] === 'a' || keysPressed[key] === 'b')
-// 		keysPressed[key] = false;
-	
-// 	return event;
-// })
-
-// document.addEventListener('keydown', (event) => {
-// 	event.preventDefault();
-
-// 	const { key } = event;
-// 	if (key === 'a' || key === 'b')
-// 		keysPressed[key] = true;
-
-// 	if (keysPressed['a'] && keysPressed['b'])
-// 		window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-	
-// 	return event;
-// })
-
-</script>
-<link rel="stylesheet" href="https://nicholasxwang.repl.co/static/css/zoom.css">
-<link rel="shortcut icon" href="https://st1.zoom.us/zoom.ico">
-<title>Join Meeting - Zoom</title>
-<style>
-  .center {
-  padding: 70px 0;
-  border: 0px solid green;
-  text-align: center;
-}
-.zoom{
-  background-color:#2D8CFF;
-  padding:5px;
-  color:white;
-  border-radius:5px;
-}
-</style>
-<div class='center'>
-<form method='POST'>
-  <h1 style='color: black;'>Join Meeting</h1>
-  <h3 style='color:grey;'>Meeting ID or Personal Link Name</h3>
-  <input type='number' placeholder='Input your Zoom Number' name='id'><br>
-  <input type='password' placeholder='Password' name='pwd'><br>
-  <input type='submit' value='Join' class='zoom' >
-</form>
-</div>
-{% endblock %}
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+        {% endblock %}
+    </body>
+</body>

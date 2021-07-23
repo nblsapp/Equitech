@@ -2,13 +2,13 @@
 {% block main %}
 
 <center>
-<h1>Login to TestPreparer</h1>
+<h1>Login to Equitech</h1>
 <h1 style='color:red;'>{{error}}</h1>
-<h2>All fields are required!</h2>
+<h2>Your account to success.</h2>
 <form autocomplete="off" method='POST'>
   <input style='width:280px;' type='email' placeholder='Email' name='email' value={{name}}><br>
   <input style='width:280px;' type='password' placeholder='Password' name='password' value={{psw}}><br>
-  <h4><input type='submit' value='Log In!'>&nbsp;&nbsp; <a href={{signup}}>Sign Up!</a>&nbsp;&nbsp;<a href='/recovery'>Forgot Password!</a></h4>
+  <h4><input type='submit' value='Log In!'><a href={{signup}}>Sign Up!</a><a href='/recovery'>Forgot Password!</a></h4>
 </form>
 </center>
 {% endblock %}

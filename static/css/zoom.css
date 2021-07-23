@@ -2,12 +2,13 @@
 
 
 body{
-  color:#FFFFFF;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('https://images.alphacoders.com/909/thumb-1920-909514.jpg');
-  background-size: auto 120%;
-  background-repeat: no-repeat;
-  background-position: left top;background-attachment: fixed;
-  font-family: 'Lexend Deca', sans-serif;
+  color:var(--white);
+  background:no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
 }
 input[type=password]{
   background:white;
@@ -21,6 +22,16 @@ input[type=password]{
   outline: none;
 }
 input[type=number]{
+  background:white;
+  padding:5px;
+  width:30%;
+  height:8%;
+  border-radius:10px;
+  border-style:solid;
+  border-color:#747487;
+  outline: none;
+}
+input[type=text]{
   background:white;
   padding:5px;
   width:30%;

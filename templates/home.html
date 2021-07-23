@@ -1,5 +1,19 @@
 {% extends "layout.html" %}
 {% block main %}
+<div style="background:rgba(96, 204, 121,0.3);width:100%;padding:5px 0px 5px 0px;height:88px;" id="banner">
+  <span onclick = 'document.getElementById("banner").style.display="none";'style='background:red;'>|  x  |</span><br>
+  <div style='float:left;height:100px;'>
+  <img src='/static/tp.png' style='border-radius:15%;width:70px;height:70px;'><img src='https://discord.com/assets/464b4ad3ec906581bdc288c42780b3c9.svg' style='border-radius:15%;width:70px;height:70px;margin-left:5px;margin-right:5px;'><img src='/static/equitech.png' style='border-radius:15%;width:70px;height:70px'>
+  </div>
+  <div style='float:left;height:100px; margin-left:10px;'>
+  <div style='font-size:1.5em;'>
+  TestPreparer.gq is now Equitech
+  </div>
+  <div>
+  All of your TestPreparer courses and messages have been moved to Equitech!
+  </div>
+  </div>
+</div>
 <script
   type="text/javascript"
   src="https://app.termly.io/embed.min.js"
@@ -51,7 +65,7 @@
     //#a83246
     //168, 50, 70
     float:right;
-    background-color:rgba(168, 50, 70,0.3);
+    background-color:rgba(255,255,255,0.7);
     z-index: 1;
     position: absolute;
     right: 0px;
@@ -60,6 +74,8 @@
     border-style:none none solid none;
     border-color:#a83246;
     border-width:3px;
+    color:#a83246;
+    font-weight:400;
     }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -68,7 +84,7 @@
    <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("1").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
 
    
-   <span style='color:#a83246;font-weight:800;'><br>❗Country Bot is Now Partnered with TestPreparer!</span>
+   <span style='font-weight:800;'><br>❗Country Bot is Now Partnered with Equitech!</span>
   Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country...&nbsp;&nbsp;&nbsp;&nbsp;<button style='background:#4287f5;border-radius:5px;padding:10px;border-style:none;' id="change">(Read More)</buttom>
 </div>
 
@@ -76,7 +92,7 @@
     <p><span style='float:left;background:red;' id='close' onclick='document.getElementById("2").setAttribute("style", "display:none");'>&nbsp;&nbsp;x&nbsp;&nbsp;</span>
 
    
-   <span style='color:#a83246;font-weight:800;'><br>❗Country Bot is Now Partnered with TestPreparer!</span>
+   <span style='color:#a83246;font-weight:800;'><br>❗Country Bot is Now Partnered with Equitech!</span>
   Country Bot is all about countries as the name may suggest. You can find almost any information that needs to be known about almost any country in the world. You can even create your own country and compete against your friends to become the biggest. And finally, its updated almost every week. Ask questions in the support server!<br>• <a href='https://discord.com/api/oauth2/authorize?client_id=810662403217948672&permissions=2048&scope=bot%20applications.commands'>Click Me for Bot Invite!</a><br>• <a href='https://discord.com/invite/hCgh9wngkS'>Click Me for Support Server</a><br>• <a href='/partners/cbot/redeem'>Click me for FREE country bot premium!</a>
   </p>
 </div>
@@ -87,10 +103,10 @@
 {% if token == True %}
 <a href='/login'><button class='launchTOP'>Try for Free!</button></a>
 {% endif %}
-<h1>TestPreparer</h1>
-<br><br><br><br>
-<span style='font-size:5em;'>Where Organization Happens</span><br><br><br>
-<span style='font-size:1em;'>TestPreparer is an app that can help students with their daily life from studies to social life to entertainment. This app also includes many integrations for learning (e.g AoPS, Zoom.us) and entertainment (e.g. Youtube, Spotify).</span><br><br><br>
+<h1>Equitech</h1>
+<br><br>
+<span style='font-size:7em;'>Balance Your Organization</span><br><br><br>
+<span style='font-size:2em;'>Equitech is an app that can help students with balancing and organizing their daily life from studies to social life to entertainment. This app also includes many integrations for learning (e.g AoPS, Zoom.us) and entertainment (e.g. Youtube, Spotify).</span><br><br><br>
 {% if token == False %}
 <a href='/launch'><button class='launch'>Launch App</button></a>
 {% endif %}

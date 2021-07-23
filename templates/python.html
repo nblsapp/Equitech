@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block main %}
-<script src="/path/to/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.js"></script>
 <script>hljs.highlightAll();</script>
 
 <style>
@@ -62,19 +62,32 @@ select{
 </center>
 <div id='main' style='width:75%'>
 <form method='POST' action='/try' id='formID'>
-<textarea id='editor' name='mycode'>&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;</textarea>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</head>
+<body>
 
-
-<input type='submit' class='run' value='Run!'>
+<div id="editor">function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+}</div>
+    
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-  var myForm = document.getElementById('formID');
-myForm.onsubmit = function() {
-    var w = window.open('about:blank','Popup_Window','toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=400,height=300,left = 312,top = 234');
-    this.target = 'Popup_Window';
-};
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/javascript");
 </script>
 
 
+<input type='submit' class='run' value='Run!'>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap');
   .run{
@@ -102,35 +115,6 @@ code {
   font-family: 'JetBrains Mono', monospace;
   size:1.5em;
 }
-
-</style>
-</form>
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
-</link>
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/python/python.min.js">
-</script>
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js">
-</script>
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/dracula.min.css">
-</link>
-
-<script>
-  let cm = new CodeMirror.fromTextArea(document.getElementById("editor"), {
-  lineNumbers: true, 
-  mode: "python", 
-  theme: "dracula",
-  lineWrapping: false,
-  parserConfig: {'pythonVersion': 2, 'strictErrors': true}
-  
-});
-CodeMirror.commands.autocomplete = function(cm) {
-     CodeMirror.simpleHint(cm, CodeMirror.pythonHint);
-   }
-</script>
 
 
 {% endblock %}

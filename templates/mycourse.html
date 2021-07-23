@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block main %}
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
   img{
@@ -43,7 +44,83 @@
   <a href='/editcourse'><i class="material-icons">add</i>Add Course Content</a><br></h3>
 </div>
 </center>
-<h1>Zoom Links</h1>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<button class="collapsible">Open Section 1</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<button class="collapsible">Open Section 2</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<button class="collapsible">Open Section 3</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+</body>
+<!--
+
+
+  <h1>Zoom Links</h1>
 <h1>Notes</h1>
 {% for i in notes %}
 <img  width=20px src={{'/static/assets/icons/'+i[2]}}><a href={{i[0]}}>{{i[1]}}</a><br>
@@ -103,4 +180,5 @@
 <h1>Other Apps</h1>
 <h2>Khan Academy, Study.com, IXL</h2>
 <h1>Assignments [Schoology]</h1>
+!-->
 {% endblock %}

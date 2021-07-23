@@ -1,12 +1,61 @@
 {% extends "layout.html" %}
 {% block main %}
+
 <body>
+  <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 50%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#spotify {background-color: transparent;}
+#youtube {background-color:  transparent;}
+</style>
+</head>
+<body>
+
+<button class="tablink" onclick="openPage('spotify', this, '#1DB954')">Spotify</button>
+<button class="tablink" onclick="openPage('youtube', this, '#c4302b')" id="defaultOpen">YouTube</button>
+
+<div id="spotify" class="tabcontent">
+  <h3>Spotify</h3>
   <form  method="POST">
   <input type="text" placeholder="Search.." class='search' name='search' style='height:50x;width:400px;'>
   <input style='height:50px;'type="submit" class="submit" value='Search'>
   </form>
-  <h1>Spotify Tracks!</h1>
-  <h2>Youtube Videos are below the spotify videos. Click <a href='#youtube'>me</a> to skip to YouTube videos!</h2>
   {% if noresults== True %}
   <h1>No Results 😭</h1>
   {% endif %}
@@ -17,12 +66,25 @@
   <h1>{{i["name"]}}</h1></a>
   <h2><a href={{i["author_url"]}}>{{i["author"]}}</a></h2></div>
   <a href={{i["link"]}}><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<button style="font-size:24px; background:#1DB954;color:white;border-style:none;border-radius:5px;margin-right:10px;">Watch on Spotify  <i class="fa fa-spotify"></i></button></a><a href={{'play/spotify/'+i["code"]}}><div style='clear:both;'><button style="font-size:24px; background:#35BCEA;color:white;border-style:none;border-radius:5px;">Watch on TestPreparer</button></a>
+<button style="font-size:24px; background:#1DB954;color:white;border-style:none;border-radius:5px;margin-right:10px;">Watch on Spotify  <i class="fa fa-spotify"></i></button></a><a href={{'play/spotify/'+i["code"]}}><div style='clear:both;'><button style="font-size:24px; background:#35BCEA;color:white;border-style:none;border-radius:5px;">Watch on Equitech</button></a>
 
   <br>
   <hr>
   {% endfor %}
-  <h1>YouTube Videos!</h1>
+  {% endif %}
+</div>
+</div>
+
+<div id="youtube" class="tabcontent">
+  <h3>YouTube</h3>
+  <form  method="POST">
+  <input type="text" placeholder="Search.." class='search' name='search' style='height:50x;width:400px;'>
+  <input style='height:50px;'type="submit" class="submit" value='Search'>
+  </form>
+  {% if noresults1== True %}
+  <h1>No Results 😭</h1>
+  {% endif %}
+  {% if noresults1 == False %}
   {% for i in mylist %}
   <div id='youtube'>
   <a href={{'play/'+i["id"]}}><div style='clear:both;'>
@@ -30,12 +92,35 @@
   <h1>{{i["title"]}}</h1></a>
   <h2><a href={{i["author_url"]}}>{{i["author_name"]}}</a></h2></div>
   <a href={{'https://www.youtube.com/watch?v='+i["id"]}}><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<button style="font-size:24px; background:#c4302b;color:white;border-style:none;border-radius:5px;margin-right:10px;">Watch on Youtube <i class="fa fa-youtube-play"></i></button></a><a href={{'play/'+i["id"]}}><div style='clear:both;'><button style="font-size:24px; background:#FCC101;color:white;border-style:none;border-radius:5px;">Watch on TestPreparer</button></a>
+<button style="font-size:24px; background:#c4302b;color:white;border-style:none;border-radius:5px;margin-right:10px;">Watch on Youtube <i class="fa fa-youtube-play"></i></button></a><a href={{'play/'+i["id"]}}><div style='clear:both;'><button style="font-size:24px; background:#FCC101;color:white;border-style:none;border-radius:5px;">Watch on Equitech</button></a>
 
   <br>
   <hr>
   {% endfor %}
-  </div>
   {% endif %}
- </body>
+</div>
+
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 
+
 {% endblock %}

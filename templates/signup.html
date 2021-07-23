@@ -10,9 +10,10 @@
     border-width:2px;
   }
 </style>
-<h1>TestPreparer Sign Up</h1>
+<h1>Equitech Sign Up</h1>
 <h1 style='color:red;'>{{error}}</h1>
-<h2>Create your TestPreparer Account.</h2>
+<h2>Create your Equitech Account.</h2>
+<h2>You will never be disorganized again!</h2>
 <form autocomplete="off" method='POST'>
   
   <input  style='width:280px;' type='text' placeholder='Username' name='username' value={{username}}><br>
@@ -20,23 +21,31 @@
   <input  type='text' placeholder='Last Name' name='ln' value={{last}}><br>
   <input   style='width:280px;'type='email' placeholder='Email' name='email' value={{email}}><br>
   <input type='hidden' name='check' value='no'><br>
-  <input name="password" id="password" type="password" onkeyup='check();' placeholder='Password:'  value={{psw}}>
+  <input name="password" id="password" type="password" onkeyup='check();' placeholder='Password:' value={{psw}}>
   <input type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' id='confirm' placeholder='Confirm Password:'/><br>
+  <h4>Birthday</h4>
+  <input   style='width:40px;'type='number'  min="1" max="12" placeholder='MM' name='month' value={{month}}>
+  <input   style='width:40px;'type='number'  min="1" max="31" placeholder='DD' name='month' value={{month}}>
+  <input   style='width:60px;'type='number'  min="1900" max="2025" placeholder='YYYY' name='month' value={{month}}><br>
   <span id='message'></span><br>
-  <h3><a href='/login'>Log In Instead</a>&nbsp;&nbsp;<input type='submit' value='Sign Up!'></h3>
+  <h3><a href='/login'>Log In Instead</a>&nbsp;&nbsp;<input id='mySubmit' type='submit' value='Sign Up!'></h3>
 </form>
 <script>
-  var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('confirm_password').value && document.getElementById('password').value !=
-    ''){
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'Passwords Matching :)';
+function check(){
+  if (document.getElementById('password').value ==  document.getElementById('confirm_password').value && document.getElementById('password').value != ''){
+    // document.getElementById('message').style.color = 'green';
+    // document.getElementById('message').innerHTML = 'Passwords Matching :)';
+    document.getElementById("mySubmit").disabled = false;
   } else {
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'Passwords Not Matching!!!';
+    // document.getElementById('message').style.color = 'red';
+    // document.getElementById('message').innerHTML = 'Passwords Not Matching!!!';
+    document.getElementById("mySubmit").disabled = true;
   }
 }
+while true{
+  check();
+}
+  
 </script>
 </center>
 {% endblock %}

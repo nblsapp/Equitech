@@ -67,48 +67,118 @@
 </style>
 <div class='card2' >
 
-<h1 style="float: left;">TestPreparer</h1>
-
-
+<h1 style="float: left;">Equitech | Balance Your Organization</h1>
 </div>
+<style>
+  @font-face{
+ font-family:'digital-clock-font';
+ src: url('/static/assets/clock.ttf');
+}
+  #time{
+    font-family:'digital-clock-font';
+    color:red;
+    font-size:1.8em;
+  }
+</style>
+<h1><span id='time'></span><br>Good <span id='greeting'></span>, {{name}}</h1>
+<script>
+  function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function startTime() {
+  var today = new Date();
+  var end = '';
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  if (parseInt(h)<13){
+    document.getElementById('greeting').innerHTML = "morning"
+  }
+  if (parseInt(h)>=13 && parseInt(h)<18){
+    document.getElementById('greeting').innerHTML = "afternoon"
+  }
+  if (parseInt(h)>=18 && parseInt(h)<21){
+    document.getElementById('greeting').innerHTML = "evening"
+  }
+  else{
+    document.getElementById('greeting').innerHTML = "night"
+  }
+  if (parseInt(h)<=12){
+    end = 'AM';
+  }
+  else{
+    h = h-12;
+    end = 'PM';
+  }
+  document.getElementById('time').innerHTML = h + ":" + m + ":" + s+ " "+ end;
+  t = setTimeout(function() {
+    startTime()
+  }, 500);
+}
+startTime();
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+</script>
 <br>
 <a href='/education'><div class="card">
-  <center><img src='https://discord.com/assets/9515c498b6c2e3d2e3e3b5ad73b6c22f.svg' alt="Avatar" style="height:80%">
+  <center><img src='static/assets/Education.png' alt="Avatar" style="width:200px">
   <div class="container">
-    <h3><b>TestPreparer Education</b></h3> 
+    <h3><b>Equitech Education</b></h3> 
   </div></center>
 </div></a>
 <a href='/community'><div class="card">
-  <center><img src='/static/assets/Chat.svg' alt="Avatar" style="height:80%">
+  <center><img src='/static/assets/Chat.png' alt="Avatar" style="width:200px">
   <div class="container">
-    <h3><b>TestPreparer Community</b></h3> 
+    <h3><b>Equitech Community</b></h3> 
   </div></center>
 </div></a>
 <a href='/extentions'><div class="card">
-  <center><img src='/static/assets/Extentions.svg' alt="Avatar" style="height:80%">
+  <center><img src='/static/assets/Extentions.png' alt="Avatar" style="width:200px">
   <div class="container">
-    <h3><b>TestPreparer Extentions</b></h3> 
+    <h3><b>Equitech Extentions</b></h3> 
   </div></center>
 </div></a>
 <a href='/account'><div class="card">
-  <center><img src='/static/assets/TestPreparerAccount.svg' alt="Avatar" style="height:80%">
+  <center><img src='/static/assets/Acc.png' alt="Avatar" style="width:200px">
   <div class="container">
-    <h3><b>TestPreparer Account</b></h3> 
+    <h3><b>Equitech Account</b></h3> 
   </div></center>
 </div></a>
-<a href='/courses'><div class="card">
-  <center><img src='https://discord.com/assets/0933c4860868252befc05509165a1db4.svg' alt="Avatar" style="height:80%">
+<a href='/about'><div class="card">
+  <center><img src='/static/assets/About.png' alt="Avatar" style="width:200px">
   <div class="container">
-    <h3><b>About TestPreparer</b></h3> 
+  <div class="container">
+    <h3><b>About Equitech</b></h3> 
   </div></center>
 </div></a>
 <a href='https://support.testpreparer.gq'><div class="card">
   <center><img src='https://discord.com/assets/3e531d8e171629e9433db0bb431b2e12.svg' alt="Avatar" style="height:80%">
   <div class="container">
-    <h3><b>TestPreparer Support</b></h3> 
+    <h3><b>Equitech Support</b></h3> 
   </div></center>
 </div></a>
-<a href='http://github.com/nicholasxwang/TestPreparer'><div class="card">
+<a href='http://github.com/nicholasxwang/Equitech'><div class="card">
   <center><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt="Avatar" style="height:80%">
   <div class="container">
     <h3><b>Github Repo</b></h3> 

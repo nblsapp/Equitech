@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<div style='float:left;width:70%;'>
+<div style='margin-top:200px;'>
+<form action="/password" method="POST">
+  <input style='width:800px;height:60px;font-size: 2em;' type="email" name="email" placeholder="Type your email to continue..."><br>
+  <input type='hidden' value="{{path}}">
+  <input type="submit" value="Next" value='Next' style='height:75px;'>
+  
+</form> 
+
+<style>
+  .sub:hover{
+    border-style:none;
+  }
+  .sub{
+    border-style:none;
+  }
+</style>
+</div>
+</div>
+<div style='float:left;width:20%;'>
+<img height="100%" src='static/assets/AccountBanner.png'>
+</div>
+{% endblock %}
